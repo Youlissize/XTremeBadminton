@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://ch1ii4nfnmlj6"]
+
+[ext_resource type="PackedScene" uid="uid://b3yq873ypw1av" path="res://Player/PlayerBase.tscn" id="1_xgact"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xgact"]
+size = Vector2(57.5, 11.8)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xgact"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xgact"]
+
+[node name="CollisionEnVue" type="Node2D"]
+
+[node name="PlayerBase" parent="." instance=ExtResource("1_xgact")]
+position = Vector2(-125, -139)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1080, 348)
+scale = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_xgact")
+
+[node name="Ground" type="StaticBody2D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_xgact")
+
+[node name="CollisionShape2DGround" type="CollisionShape2D" parent="Ground"]
+material = SubResource("CanvasItemMaterial_xgact")
+position = Vector2(577, 727)
+scale = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_xgact")
