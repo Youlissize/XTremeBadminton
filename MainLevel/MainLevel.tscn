@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://kw083pfrnrav"]
+[gd_scene load_steps=12 format=3 uid="uid://kw083pfrnrav"]
 
 [ext_resource type="Script" uid="uid://f8ok0pwsxacq" path="res://MainLevel/Scripts/main_level.gd" id="1_4vkl2"]
 [ext_resource type="PackedScene" uid="uid://b3yq873ypw1av" path="res://Player/PlayerBase.tscn" id="1_378x0"]
 [ext_resource type="Texture2D" uid="uid://cxtuvhh1ubuq2" path="res://Textures/fondavecfilet.jpg" id="2_q5c6i"]
 [ext_resource type="Script" uid="uid://0yfwhr0e80a7" path="res://MainLevel/Scripts/volant.gd" id="3_q5c6i"]
+[ext_resource type="Script" uid="uid://cr5ihbii0tmw" path="res://Player/Scripts/player_walking.gd" id="4_6gdkc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4vkl2"]
 
@@ -38,6 +39,7 @@ texture = ExtResource("2_q5c6i")
 
 [node name="PlayerBase" parent="." instance=ExtResource("1_378x0")]
 position = Vector2(194, 467)
+script = ExtResource("4_6gdkc")
 
 [node name="Volant" type="RigidBody2D" parent="."]
 position = Vector2(726, 613)
