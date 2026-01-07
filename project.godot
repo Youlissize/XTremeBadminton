@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="XTremeBadminton"
-run/main_scene="uid://kw083pfrnrav"
+run/main_scene="uid://dlm5t26j1x75l"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 

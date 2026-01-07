@@ -1,0 +1,143 @@
+[gd_scene load_steps=13 format=3 uid="uid://dlm5t26j1x75l"]
+
+[ext_resource type="Script" uid="uid://bis7hslkecq4c" path="res://MainLevel/Scripts/mapLoading.gd" id="1_82vp7"]
+[ext_resource type="Texture2D" uid="uid://cxtuvhh1ubuq2" path="res://Textures/fondavecfilet.jpg" id="1_dn44s"]
+[ext_resource type="PackedScene" uid="uid://b3yq873ypw1av" path="res://Player/PlayerBase.tscn" id="3_7r4hf"]
+[ext_resource type="Script" uid="uid://cr5ihbii0tmw" path="res://Player/Scripts/player_walking.gd" id="4_jr3hq"]
+[ext_resource type="PackedScene" uid="uid://bueuy8e621uk7" path="res://MainLevel/Scripts/Projectile/ProjectileBase.tscn" id="5_jr3hq"]
+
+[sub_resource type="Gradient" id="Gradient_82vp7"]
+colors = PackedColorArray(0, 0, 0, 1, 1, 0.424, 0.28, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7r4hf"]
+gradient = SubResource("Gradient_82vp7")
+width = 1920
+height = 600
+fill_from = Vector2(0.484444, 0)
+fill_to = Vector2(0.564444, 1)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7r4hf"]
+bounce = 0.2
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jr3hq"]
+
+[sub_resource type="Gradient" id="Gradient_jr3hq"]
+colors = PackedColorArray(0, 0, 0, 1, 0.443779, 0.00275464, 0.191233, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xww2o"]
+gradient = SubResource("Gradient_jr3hq")
+width = 100
+height = 30
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fjjf1"]
+
+[node name="CustomMapLoading" type="Node2D" node_paths=PackedStringArray("player1", "ground")]
+script = ExtResource("1_82vp7")
+player1 = NodePath("Player1")
+ground = NodePath("Ground/StaticBody2D")
+
+[node name="Background" type="Sprite2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+visible = false
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.0586658, 0.114458, 0.172741, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background"]
+position = Vector2(965, 544)
+texture = ExtResource("1_dn44s")
+
+[node name="Ground" type="Node2D" parent="."]
+position = Vector2(0, 830)
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground"]
+position = Vector2(965, 300)
+texture = SubResource("GradientTexture2D_7r4hf")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Ground"]
+collision_layer = 3
+physics_material_override = SubResource("PhysicsMaterial_7r4hf")
+
+[node name="GroundCollision" type="CollisionShape2D" parent="Ground/StaticBody2D"]
+position = Vector2(965, 0)
+shape = SubResource("WorldBoundaryShape2D_jr3hq")
+
+[node name="Celling" type="Node2D" parent="."]
+position = Vector2(0, 100)
+
+[node name="Sprite2D" type="Sprite2D" parent="Celling"]
+position = Vector2(965, -300)
+rotation = 3.14159
+texture = SubResource("GradientTexture2D_7r4hf")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Celling"]
+collision_layer = 3
+physics_material_override = SubResource("PhysicsMaterial_7r4hf")
+
+[node name="GroundCollision" type="CollisionShape2D" parent="Celling/StaticBody2D"]
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_jr3hq")
+
+[node name="LeftBorder" type="Node2D" parent="."]
+position = Vector2(150, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="LeftBorder"]
+position = Vector2(-300, 540)
+rotation = 1.5708
+texture = SubResource("GradientTexture2D_7r4hf")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="LeftBorder"]
+collision_layer = 3
+physics_material_override = SubResource("PhysicsMaterial_7r4hf")
+
+[node name="GroundCollision" type="CollisionShape2D" parent="LeftBorder/StaticBody2D"]
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_jr3hq")
+
+[node name="RightBorder" type="Node2D" parent="."]
+position = Vector2(1770, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="RightBorder"]
+position = Vector2(300, 540)
+rotation = -1.5708
+scale = Vector2(3.75, 1)
+texture = SubResource("GradientTexture2D_7r4hf")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="RightBorder"]
+collision_layer = 3
+physics_material_override = SubResource("PhysicsMaterial_7r4hf")
+
+[node name="GroundCollision" type="CollisionShape2D" parent="RightBorder/StaticBody2D"]
+rotation = -1.5708
+shape = SubResource("WorldBoundaryShape2D_jr3hq")
+
+[node name="Player1" parent="." instance=ExtResource("3_7r4hf")]
+position = Vector2(437, 570)
+script = ExtResource("4_jr3hq")
+
+[node name="ProjectileBase" parent="." instance=ExtResource("5_jr3hq")]
+position = Vector2(654, 564)
+scale = Vector2(4, 4)
+size = 4.0
+
+[node name="ProjectileBase2" parent="." instance=ExtResource("5_jr3hq")]
+position = Vector2(250, 328)
+
+[node name="Filet" type="Node2D" parent="."]
+position = Vector2(860, 830)
+scale = Vector2(1, 3.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="Filet"]
+position = Vector2(0, -50)
+rotation = 1.5708
+texture = SubResource("GradientTexture2D_xww2o")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Filet/Sprite2D"]
+scale = Vector2(1, 0.5)
+collision_layer = 3
+physics_material_override = SubResource("PhysicsMaterial_7r4hf")
+
+[node name="GroundCollision" type="CollisionShape2D" parent="Filet/Sprite2D/StaticBody2D"]
+scale = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_fjjf1")

@@ -1,3 +1,3 @@
 extends Node
 
-static var volants := Array()
+static var projectiles := Array()

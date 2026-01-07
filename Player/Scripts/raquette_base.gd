@@ -14,7 +14,7 @@ func hitVolant(volant : PhysicsBody2D) -> bool:
 	
 func hit() ->bool :
 	var res = false
-	for volant in Globals.volants:
+	for volant in Globals.projectiles:
 		if(hitVolant(volant)):
 			res = true
 	return res
