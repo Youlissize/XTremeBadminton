@@ -20,7 +20,7 @@ func hitVolant(volant : PhysicsBody2D) -> bool:
 	var raquetteHitDirection : Vector2 #la perpendiculaire à la raquette
 	raquetteHitDirection = epauleToVolant.orthogonal().normalized()
 	if ((leftSide && enHaut) || (!leftSide && !enHaut)):
-		raquetteHitDirection.x *= -1;
+		raquetteHitDirection *= -1;
 	
 	var hitDirection : Vector2 #direction du tir
 	hitDirection = lerp(raquetteHitDirection,Vector2.UP, hitSafety).normalized()

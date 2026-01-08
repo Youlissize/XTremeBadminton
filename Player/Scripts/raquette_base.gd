@@ -2,7 +2,7 @@ extends Node2D
 const Globals := preload("res://MainLevel/Scripts/globalStuff.gd")
 
 var leftSide : bool
-	
+
 func isHitPossible(pos : Vector2) ->bool:
 	return true
 

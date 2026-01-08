@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://bukqlc3n3mh88"]
+
+[ext_resource type="PackedScene" uid="uid://b3yq873ypw1av" path="res://Player/PlayerBase.tscn" id="1_1l6oy"]
+[ext_resource type="Script" uid="uid://cr5ihbii0tmw" path="res://Player/Scripts/player_walking.gd" id="2_jhcla"]
+
+[node name="PlayerWalking" instance=ExtResource("1_1l6oy")]
+script = ExtResource("2_jhcla")

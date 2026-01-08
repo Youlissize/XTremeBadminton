@@ -1,9 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://dlm5t26j1x75l"]
+[gd_scene load_steps=11 format=3 uid="uid://dlm5t26j1x75l"]
 
 [ext_resource type="Script" uid="uid://bis7hslkecq4c" path="res://MainLevel/Scripts/mapLoading.gd" id="1_82vp7"]
 [ext_resource type="Texture2D" uid="uid://cxtuvhh1ubuq2" path="res://Textures/fondavecfilet.jpg" id="1_dn44s"]
-[ext_resource type="PackedScene" uid="uid://b3yq873ypw1av" path="res://Player/PlayerBase.tscn" id="3_7r4hf"]
-[ext_resource type="Script" uid="uid://cr5ihbii0tmw" path="res://Player/Scripts/player_walking.gd" id="4_jr3hq"]
 [ext_resource type="PackedScene" uid="uid://bueuy8e621uk7" path="res://MainLevel/Scripts/Projectile/ProjectileBase.tscn" id="5_jr3hq"]
 
 [sub_resource type="Gradient" id="Gradient_82vp7"]
@@ -31,9 +29,8 @@ height = 30
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fjjf1"]
 
-[node name="CustomMapLoading" type="Node2D" node_paths=PackedStringArray("player1", "ground")]
+[node name="CustomMapLoading" type="Node2D" node_paths=PackedStringArray("ground")]
 script = ExtResource("1_82vp7")
-player1 = NodePath("Player1")
 ground = NodePath("Ground/StaticBody2D")
 
 [node name="Background" type="Sprite2D" parent="."]
@@ -111,10 +108,6 @@ physics_material_override = SubResource("PhysicsMaterial_7r4hf")
 [node name="GroundCollision" type="CollisionShape2D" parent="RightBorder/StaticBody2D"]
 rotation = -1.5708
 shape = SubResource("WorldBoundaryShape2D_jr3hq")
-
-[node name="Player1" parent="." instance=ExtResource("3_7r4hf")]
-position = Vector2(437, 570)
-script = ExtResource("4_jr3hq")
 
 [node name="ProjectileBase" parent="." instance=ExtResource("5_jr3hq")]
 position = Vector2(654, 564)
