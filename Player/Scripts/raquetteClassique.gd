@@ -2,7 +2,7 @@ extends "res://Player/Scripts/raquette_base.gd"
 
 	#raquette et style de jeu mon gars
 var minHitDist := 50.0
-var maxHitDist := 250.0
+var maxHitDist := 240.0
 var hitForce := 1500.0
 var hitSafety := 0.2
 

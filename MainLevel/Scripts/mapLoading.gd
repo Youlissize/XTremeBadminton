@@ -24,7 +24,7 @@ func _ready() -> void:
 	#Create and Save custom map here
 	if (true): 
 		data.filetPos = 0.5
-		data.filetSize = 5
+		data.filetSize = 3
 		data.width = 30
 		data.mapName = mapName
 		data.save_map()

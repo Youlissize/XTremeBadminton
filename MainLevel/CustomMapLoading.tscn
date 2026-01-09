@@ -1,8 +1,18 @@
-[gd_scene load_steps=11 format=3 uid="uid://dlm5t26j1x75l"]
+[gd_scene load_steps=15 format=3 uid="uid://dlm5t26j1x75l"]
 
 [ext_resource type="Script" uid="uid://bis7hslkecq4c" path="res://MainLevel/Scripts/mapLoading.gd" id="1_82vp7"]
 [ext_resource type="Texture2D" uid="uid://cxtuvhh1ubuq2" path="res://Textures/fondavecfilet.jpg" id="1_dn44s"]
+[ext_resource type="Shader" uid="uid://drlrkl0b5wi4g" path="res://MainLevel/BackgroundTest.gdshader" id="2_4buw4"]
 [ext_resource type="PackedScene" uid="uid://bueuy8e621uk7" path="res://MainLevel/Scripts/Projectile/ProjectileBase.tscn" id="5_jr3hq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4buw4"]
+shader = ExtResource("2_4buw4")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jr3hq"]
+shader = ExtResource("2_4buw4")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xww2o"]
+shader = ExtResource("2_4buw4")
 
 [sub_resource type="Gradient" id="Gradient_82vp7"]
 colors = PackedColorArray(0, 0, 0, 1, 1, 0.424, 0.28, 1)
@@ -36,14 +46,23 @@ ground = NodePath("Ground/StaticBody2D")
 [node name="Background" type="Sprite2D" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="Background"]
-visible = false
+material = SubResource("ShaderMaterial_4buw4")
 offset_right = 1920.0
 offset_bottom = 1080.0
 color = Color(0.0586658, 0.114458, 0.172741, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background"]
+visible = false
 position = Vector2(965, 544)
 texture = ExtResource("1_dn44s")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="Background"]
+material = SubResource("ShaderMaterial_jr3hq")
+position = Vector2(339, 242)
+scale = Vector2(500, 500)
+
+[node name="Material" type="Sprite2D" parent="Background"]
+material = SubResource("ShaderMaterial_xww2o")
 
 [node name="Ground" type="Node2D" parent="."]
 position = Vector2(0, 830)
@@ -116,6 +135,11 @@ size = 4.0
 
 [node name="ProjectileBase2" parent="." instance=ExtResource("5_jr3hq")]
 position = Vector2(250, 328)
+
+[node name="ProjectileBase3" parent="." instance=ExtResource("5_jr3hq")]
+position = Vector2(1383, 656)
+scale = Vector2(2, 2)
+size = 2.0
 
 [node name="Filet" type="Node2D" parent="."]
 position = Vector2(860, 830)
