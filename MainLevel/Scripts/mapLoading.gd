@@ -2,6 +2,7 @@ extends Node
 
 const Globals := preload("res://MainLevel/Scripts/globalStuff.gd")
 var data := preload("res://MainLevel/Scripts/mapData.gd").new()
+var badMatch := preload("res://MainLevel/Scripts/Match/badMatch.gd").new()
 var mapName = "mapTest"
 
 # Inputs and multiplayer stuff
@@ -20,7 +21,8 @@ var currentHeight : float
 var currentWidth : float
 
 func _ready() -> void:
-	
+	Globals.level = self
+	Globals.currentMatch = badMatch
 	#Create and Save custom map here
 	if (true): 
 		data.filetPos = 0.5

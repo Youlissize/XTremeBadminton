@@ -57,6 +57,10 @@ func setSide(isLeft : bool) -> void :
 	raquette.leftSide = isLeftSide
 	if (!isLeft):
 		scale = Vector2(-1,1)
+	if isLeft:
+		Globals.currentMatch.teamLeft.append(self)
+	else:
+		Globals.currentMatch.teamRight.append(self)
 
 func _process(_delta):
 	# let the player leave by pressing the "join" button

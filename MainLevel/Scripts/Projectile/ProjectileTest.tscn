@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=3 uid="uid://cosycof08ge8h"]
+
+[ext_resource type="Texture2D" uid="uid://cadlfytdtswru" path="res://icon.svg" id="2_3k636"]
+
+[sub_resource type="GDScript" id="GDScript_0jmot"]
+script/source = "@tool # makes function _process called in the editor
+extends RigidBody2D
+
+const Globals := preload(\"res://MainLevel/Scripts/globalStuff.gd\")
+
+@export var size := 1.0
+#var customGravity := 1.0
+var motion := Vector2(0,0)
+var currentGravity := 10.0
+var damping := 10
+
+func getRealSize():
+	return size * 20
+
+func _ready() -> void:
+	Globals.projectiles.append(self)
+
+#function called every frame
+func _process(delta : float) -> void:
+	scale = Vector2(size,size)
+	get_node(\"CollisionShape2D\").scale = 2*Vector2(size,size)
+	return
+		#custom process of gravity, collisions, bounce...
+	motion = get(\"linear_velocity\")
+	#apply gravity and slow
+	motion.y += currentGravity
+	#motion *= 1.0/(1+damping*delta)
+	var collision = move_and_collide(motion * delta)
+	if collision:
+		motion = motion.bounce(collision.get_normal())
+		if collision.get_collider().has_method(\"hit\"):
+			collision.get_collider().hit()
+	
+func _physics_process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vxyuh"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_h8q4t"]
+diffuse_texture = ExtResource("2_3k636")
+
+[node name="ProjectileTest" type="RigidBody2D"]
+position = Vector2(0, 1139.8)
+script = SubResource("GDScript_0jmot")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2, 2)
+shape = SubResource("CircleShape2D_vxyuh")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.2
+offset_top = -19.2
+offset_right = 108.8
+offset_bottom = 108.8
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+texture = SubResource("CanvasTexture_h8q4t")
+flip_v = true

@@ -1,9 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://dlm5t26j1x75l"]
+[gd_scene load_steps=17 format=3 uid="uid://dlm5t26j1x75l"]
 
 [ext_resource type="Script" uid="uid://bis7hslkecq4c" path="res://MainLevel/Scripts/mapLoading.gd" id="1_82vp7"]
 [ext_resource type="Texture2D" uid="uid://cxtuvhh1ubuq2" path="res://Textures/fondavecfilet.jpg" id="1_dn44s"]
 [ext_resource type="Shader" uid="uid://drlrkl0b5wi4g" path="res://MainLevel/BackgroundTest.gdshader" id="2_4buw4"]
+[ext_resource type="PackedScene" uid="uid://bhv0xwjx2dx6p" path="res://MainLevel/HUD/Score/ScoreDisplay.tscn" id="2_jr3hq"]
 [ext_resource type="PackedScene" uid="uid://bueuy8e621uk7" path="res://MainLevel/Scripts/Projectile/ProjectileBase.tscn" id="5_jr3hq"]
+[ext_resource type="Script" uid="uid://d2atqmgs58i2o" path="res://MainLevel/MapObjects/ground.gd" id="5_xww2o"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4buw4"]
 shader = ExtResource("2_4buw4")
@@ -43,6 +45,9 @@ height = 30
 script = ExtResource("1_82vp7")
 ground = NodePath("Ground/StaticBody2D")
 
+[node name="ScoreDisplay" parent="." instance=ExtResource("2_jr3hq")]
+position = Vector2(840, 897)
+
 [node name="Background" type="Sprite2D" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="Background"]
@@ -74,6 +79,7 @@ texture = SubResource("GradientTexture2D_7r4hf")
 [node name="StaticBody2D" type="StaticBody2D" parent="Ground"]
 collision_layer = 3
 physics_material_override = SubResource("PhysicsMaterial_7r4hf")
+script = ExtResource("5_xww2o")
 
 [node name="GroundCollision" type="CollisionShape2D" parent="Ground/StaticBody2D"]
 position = Vector2(965, 0)
@@ -129,15 +135,7 @@ rotation = -1.5708
 shape = SubResource("WorldBoundaryShape2D_jr3hq")
 
 [node name="ProjectileBase" parent="." instance=ExtResource("5_jr3hq")]
-position = Vector2(654, 564)
-scale = Vector2(4, 4)
-size = 4.0
-
-[node name="ProjectileBase2" parent="." instance=ExtResource("5_jr3hq")]
-position = Vector2(250, 328)
-
-[node name="ProjectileBase3" parent="." instance=ExtResource("5_jr3hq")]
-position = Vector2(1383, 656)
+position = Vector2(515, 624)
 scale = Vector2(2, 2)
 size = 2.0
 

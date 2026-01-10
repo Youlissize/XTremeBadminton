@@ -11,6 +11,9 @@ diffuse_texture = ExtResource("1_o8eks")
 [node name="ProjectileBase" type="RigidBody2D"]
 collision_layer = 2
 collision_mask = 2
+gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 10
 angular_damp = 1.0
 script = ExtResource("1_y46ew")
 
@@ -32,3 +35,5 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.3, 0.3)
 texture = SubResource("CanvasTexture_y46ew")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

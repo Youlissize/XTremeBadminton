@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cy7dyhsxg01qw"]
+
+[ext_resource type="Script" uid="uid://bm210b2560r6o" path="res://MainLevel/MapObjects/mapObjectBase.gd" id="1_22awo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mhqml"]
+
+[node name="StaticBody" type="StaticBody2D"]
+script = ExtResource("1_22awo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_mhqml")

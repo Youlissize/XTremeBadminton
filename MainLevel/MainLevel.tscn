@@ -42,7 +42,7 @@ position = Vector2(194, 467)
 script = ExtResource("4_6gdkc")
 
 [node name="Volant" type="RigidBody2D" parent="."]
-position = Vector2(726, 613)
+position = Vector2(726, 869.667)
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("3_q5c6i")
@@ -55,7 +55,7 @@ offset_bottom = 26.0
 color = Color(1, 0, 0, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Volant"]
-scale = Vector2(2.49, 2.49)
+scale = Vector2(2, 2)
 shape = SubResource("CircleShape2D_4vkl2")
 
 [node name="Boundaries" type="Node" parent="."]
@@ -92,7 +92,7 @@ rotation = -1.5708
 shape = SubResource("WorldBoundaryShape2D_6gdkc")
 
 [node name="Volant2" type="RigidBody2D" parent="."]
-position = Vector2(240, 226)
+position = Vector2(240, 482.667)
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("3_q5c6i")
@@ -105,5 +105,5 @@ offset_bottom = 26.0
 color = Color(1, 0, 0, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Volant2"]
-scale = Vector2(2.49, 2.49)
+scale = Vector2(2, 2)
 shape = SubResource("CircleShape2D_4vkl2")

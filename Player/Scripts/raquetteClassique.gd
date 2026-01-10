@@ -29,5 +29,6 @@ func hitVolant(volant : PhysicsBody2D) -> bool:
 	hitStrength = volant.get("linear_velocity").length()*0.3 + hitForce
 	
 	volant.set("linear_velocity", hitDirection*hitStrength)
+	volant.set("gravity_scale", 1) # TODO : remove this
 	
 	return true

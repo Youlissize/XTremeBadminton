@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://bhv0xwjx2dx6p"]
+
+[ext_resource type="Texture2D" uid="uid://cadlfytdtswru" path="res://icon.svg" id="1_6vv5e"]
+[ext_resource type="Script" uid="uid://dd82ywmj20hgm" path="res://MainLevel/HUD/Score/scoreDisplay.gd" id="1_rm60b"]
+
+[sub_resource type="Gradient" id="Gradient_rm60b"]
+colors = PackedColorArray(0, 0, 0, 1, 0.5, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ow0p0"]
+gradient = SubResource("Gradient_rm60b")
+
+[node name="ScoreDisplay" type="Node2D"]
+top_level = true
+script = ExtResource("1_rm60b")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(50, 50)
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="LeftScore" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftScore"]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_ow0p0")
+
+[node name="LeftDisplay" type="MenuButton" parent="MarginContainer/HBoxContainer/LeftScore"]
+layout_mode = 2
+text = "0"
+
+[node name="Middle" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/Middle"]
+layout_mode = 2
+texture = ExtResource("1_6vv5e")
+
+[node name="RightScore" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/RightScore"]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_ow0p0")
+flip_h = true
+
+[node name="RightDisplay" type="MenuButton" parent="MarginContainer/HBoxContainer/RightScore"]
+layout_mode = 2
+text = "0"
