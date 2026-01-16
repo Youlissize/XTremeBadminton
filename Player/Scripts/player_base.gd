@@ -49,7 +49,8 @@ func init(player_num: int, device: int):
 	
 	anim = get_node("AnimationPlayer")
 	epaule = get_node("Epaule")
-	raquette = get_node("Raquette")
+	raquette = get_node("Epaule/Raquette")
+	raquette.player = self
 	setSide(player_num%2==0) #à droite si impair
 	
 func setSide(isLeft : bool) -> void :
@@ -72,9 +73,12 @@ func _process(_delta):
 func _input(_event: InputEvent) -> void:
 		# Input execute
 	X_dir = input.get_axis("move_left","move_right")
-	if (input.is_action_pressed("jump")):
+	if (input.is_action_just_pressed("jump")):
 		jump()
-	elif (input.is_action_pressed("hit")):
+	#input.get_vector()
+	#elif (input.is_action_just_released("jump")): 
+	#	jump()
+	elif (input.is_action_just_pressed("hit")):
 		hit()
 
 # DEPLACEMENTS

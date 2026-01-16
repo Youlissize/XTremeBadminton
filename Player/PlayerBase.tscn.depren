@@ -1,10 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://b3yq873ypw1av"]
+[gd_scene load_steps=9 format=3 uid="uid://b3yq873ypw1av"]
 
 [ext_resource type="Script" uid="uid://bctqxqmu1re5s" path="res://Player/Scripts/player_base.gd" id="1_5g0nh"]
 [ext_resource type="Texture2D" uid="uid://bwj337npmg6l4" path="res://Textures/char.png" id="2_7r5ub"]
-[ext_resource type="PackedScene" uid="uid://c01lnpoa1ka1o" path="res://Player/Scripts/Raquettes/RaquetteBase.tscn" id="4_n4epv"]
-[ext_resource type="PackedScene" uid="uid://crlgdmpcbxwnj" path="res://Player/Scripts/Raquettes/raquetteClassique.tscn" id="4_vvp7v"]
-[ext_resource type="Shader" uid="uid://duw5b4cwiksme" path="res://MainLevel/customMaterials/IndicatorClassic.gdshader" id="6_n4epv"]
+[ext_resource type="Texture2D" uid="uid://cjpl0padt5th6" path="res://Textures/brasmancheraquette.png" id="4_7r5ub"]
+[ext_resource type="Script" uid="uid://825iarr2sy41" path="res://Player/Scripts/Raquettes/raquetteClassique.gd" id="4_vvp7v"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jh3ds"]
 
@@ -13,14 +12,14 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Epaule:rotation")
+tracks/0/path = NodePath("Epaule/BrasRaquette:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.966667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, 6.28319]
+"values": [0.933751, 7.21694]
 }
 
 [sub_resource type="Animation" id="Animation_7r5ub"]
@@ -28,14 +27,14 @@ resource_name = "frapperHaut"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Epaule:rotation")
+tracks/0/path = NodePath("Epaule/BrasRaquette:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.966667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, 6.28319]
+"values": [0.933751, 8.85755]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_n4epv"]
@@ -43,9 +42,6 @@ _data = {
 &"RESET": SubResource("Animation_vvp7v"),
 &"frapperHaut": SubResource("Animation_7r5ub")
 }
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gw6a4"]
-shader = ExtResource("6_n4epv")
 
 [node name="PlayerBase" type="CharacterBody2D"]
 script = ExtResource("1_5g0nh")
@@ -68,22 +64,12 @@ speed_scale = 3.0
 [node name="Epaule" type="Node2D" parent="."]
 position = Vector2(20, -90)
 
-[node name="OLDRaquette" parent="Epaule" instance=ExtResource("4_n4epv")]
-visible = false
+[node name="BrasRaquette" type="Sprite2D" parent="Epaule"]
+position = Vector2(-9, 11)
+rotation = 0.933751
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("4_7r5ub")
+offset = Vector2(-29, 120)
 
-[node name="Raquette" parent="Epaule" instance=ExtResource("4_vvp7v")]
-
-[node name="Indicator" type="ColorRect" parent="."]
-visible = false
-material = SubResource("ShaderMaterial_gw6a4")
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -178.0
-offset_top = -289.0
-offset_right = 212.0
-offset_bottom = 101.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Raquette" type="Node2D" parent="."]
+script = ExtResource("4_vvp7v")

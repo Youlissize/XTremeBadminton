@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bis7hslkecq4c" path="res://MainLevel/Scripts/mapLoading.gd" id="1_82vp7"]
 [ext_resource type="Texture2D" uid="uid://cxtuvhh1ubuq2" path="res://Textures/fondavecfilet.jpg" id="1_dn44s"]
-[ext_resource type="Shader" uid="uid://drlrkl0b5wi4g" path="res://MainLevel/BackgroundTest.gdshader" id="2_4buw4"]
+[ext_resource type="Shader" uid="uid://drlrkl0b5wi4g" path="res://MainLevel/customMaterials/BackgroundTest.gdshader" id="2_4buw4"]
 [ext_resource type="PackedScene" uid="uid://bhv0xwjx2dx6p" path="res://MainLevel/HUD/Score/ScoreDisplay.tscn" id="2_jr3hq"]
 [ext_resource type="PackedScene" uid="uid://bueuy8e621uk7" path="res://MainLevel/Scripts/Projectile/ProjectileBase.tscn" id="5_jr3hq"]
 [ext_resource type="Script" uid="uid://d2atqmgs58i2o" path="res://MainLevel/MapObjects/ground.gd" id="5_xww2o"]
@@ -62,11 +62,13 @@ position = Vector2(965, 544)
 texture = ExtResource("1_dn44s")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Background"]
+visible = false
 material = SubResource("ShaderMaterial_jr3hq")
 position = Vector2(339, 242)
 scale = Vector2(500, 500)
 
 [node name="Material" type="Sprite2D" parent="Background"]
+visible = false
 material = SubResource("ShaderMaterial_xww2o")
 
 [node name="Ground" type="Node2D" parent="."]
@@ -136,8 +138,6 @@ shape = SubResource("WorldBoundaryShape2D_jr3hq")
 
 [node name="ProjectileBase" parent="." instance=ExtResource("5_jr3hq")]
 position = Vector2(515, 624)
-scale = Vector2(2, 2)
-size = 2.0
 
 [node name="Filet" type="Node2D" parent="."]
 position = Vector2(860, 830)

@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=4 uid="uid://dcvcp2ujtb8xu"]
+
+[ext_resource type="Shader" uid="uid://drlrkl0b5wi4g" path="res://MainLevel/customMaterials/BackgroundTest.gdshader" id="1_41m0q"]
+[ext_resource type="Script" uid="uid://bgegb8tfpf38e" path="res://MainLevel/HUD/Map/mapDisplay.gd" id="1_dl5q4"]
+[ext_resource type="TileSet" uid="uid://bmawrhu0xa2jc" path="res://MainLevel/MapObjects/mapTest.tres" id="1_v6nqn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dl5q4"]
+shader = ExtResource("1_41m0q")
+
+[node name="MapDisplay" type="Node2D"]
+script = ExtResource("1_dl5q4")
+
+[node name="Background" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_dl5q4")
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+scale = Vector2(0.5, 0.5)
+tile_map_data = PackedByteArray("AAAAAP//AAAHAAIAAAABAP//AAAHAAIAAAABAP7/AAAHAAIAAAACAP7/AAAHAAIAAAADAP7/AAAHAAIAAAADAP//AAAHAAIAAAACAP//AAAHAAIAAAAEAP7/AAAHAAIAAAAEAP3/AAAHAAIAAAADAP3/AAAHAAIAAAACAP3/AAAHAAIAAAABAP3/AAAHAAIAAAAAAP3/AAAHAAIAAAAAAP7/AAAHAAIAAAAFAP7/AAAFAAIAAAAFAP3/AAAFAAIAAAAFAP//AAAFAAIAAAAFAAAAAAAFAAIAAAAFAAEAAAAFAAIAAAAFAAIAAAAFAAIAAAAFAAMAAAAFAAIAAAAFAAQAAAAFAAIAAAAFAAUAAAAIAAEAAAAEAAUAAAAHAAEAAAAEAAQAAAAEAAIAAAAEAAMAAAAEAAIAAAAEAAIAAAAEAAIAAAAEAAEAAAAEAAIAAAAEAAAAAAABAAIAAAADAAAAAAAFAAMAAAACAAAAAAAFAAMAAAABAAAAAAAFAAMAAAAAAAAAAAAFAAMAAAD//wAAAAAHAAEAAAA=")
+tile_set = ExtResource("1_v6nqn")

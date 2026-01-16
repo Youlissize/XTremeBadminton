@@ -1,21 +1,46 @@
-extends "res://Player/Scripts/raquette_base.gd"
+extends "res://Player/Scripts/Raquettes/raquette_base.gd"
 
 	#raquette et style de jeu mon gars
 var minHitDist := 50.0
-var maxHitDist := 240.0
+var maxHitDist := 200.0
+var angleTopStart := 30.0
+var angleTopEnd := 140.0
+var angleBotStart := 80.0
+var angleBotEnd := 170.0
+
 var hitForce := 1500.0
 var hitSafety := 0.2
 
 
 func hitVolant(volant : PhysicsBody2D) -> bool:
-	var epauleToVolant : Vector2 = volant.global_position-self.global_position
 	
+	var epauleToVolant : Vector2 = volant.global_position- player.get_node("Epaule").global_position
+	var enHaut : bool = epauleToVolant.y<0
+	
+	# Animation TODO : not play anim for each volant
+	var animation = get_node("AnimationPlayer")
+	if (animation):
+		if (enHaut): 
+			animation.play("hit")
+		else:
+			animation.play("hit_bas")
+	
+	
+	#Test distance epaule-volant
 	var dist = epauleToVolant.length()
 	var s = volant.getRealSize()
 	if (dist<minHitDist-s || dist>maxHitDist+ s):
 		return false
-		
-	var enHaut : bool = epauleToVolant.y<0
+	
+	
+	#Test angle epaule-volant
+	var phi : float = epauleToVolant.angle_to(forward()) * 57.2957795131 #180/PI
+	phi = 180 - abs(phi)
+	print(phi)
+	if ((enHaut && (phi>angleTopEnd || phi<angleTopStart))):
+		return false
+	if (!enHaut && (phi>angleBotEnd || phi<angleBotStart)):
+		return false
 	
 	var raquetteHitDirection : Vector2 #la perpendiculaire à la raquette
 	raquetteHitDirection = epauleToVolant.orthogonal().normalized()

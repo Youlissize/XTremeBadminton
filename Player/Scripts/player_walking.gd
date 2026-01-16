@@ -15,5 +15,5 @@ func jump():
 
 func hit() ->bool:
 	var res = super.hit()
-	anim.play("frapperHaut")
+	#anim.play("frapperHaut")
 	return res

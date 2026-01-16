@@ -5,3 +5,5 @@
 
 [node name="PlayerWalking" instance=ExtResource("1_1l6oy")]
 script = ExtResource("2_jhcla")
+
+[editable path="Epaule/Raquette"]

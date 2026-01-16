@@ -60,7 +60,7 @@ func givePorjectileToServe(toLeftPlayer : bool = true) -> void:
 		serveur = Globals.level.get_node("Filet")
 	if (!serveur):
 		return
-	var targetLocation = serveur.position + Vector2(0, -100)
+	var targetLocation = serveur.position + Vector2(0, -220)
 	if (Globals.projectiles.size()):
 		var proj = Globals.projectiles[0]
 		

@@ -1,6 +1,7 @@
 extends Node2D
 const Globals := preload("res://MainLevel/Scripts/globalStuff.gd")
 
+var player
 var leftSide : bool
 
 func isHitPossible(pos : Vector2) ->bool:
@@ -18,3 +19,9 @@ func hit() ->bool :
 		if(hitVolant(volant)):
 			res = true
 	return res
+
+func forward() -> Vector2:
+	if leftSide:
+		return Vector2(1,0)
+	else:
+		return Vector2(-1,0)

@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://c01lnpoa1ka1o"]
+
+[ext_resource type="Script" uid="uid://qks10l3ldcr" path="res://Player/Scripts/Raquettes/raquette_base.gd" id="1_gdxg8"]
+[ext_resource type="Texture2D" uid="uid://cadlfytdtswru" path="res://icon.svg" id="2_qcxda"]
+[ext_resource type="Texture2D" uid="uid://cjpl0padt5th6" path="res://Textures/brasmancheraquette.png" id="3_qhxy4"]
+[ext_resource type="Shader" uid="uid://duw5b4cwiksme" path="res://MainLevel/customMaterials/IndicatorClassic.gdshader" id="4_qhxy4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qhxy4"]
+shader = ExtResource("4_qhxy4")
+
+[node name="RaquetteBase" type="Node2D"]
+script = ExtResource("1_gdxg8")
+
+[node name="RaquetteText" type="TextureRect" parent="."]
+offset_left = 40.0001
+offset_top = -150.0
+offset_right = 480.0
+offset_bottom = 360.0
+rotation = 1.45692
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_qhxy4")
+
+[node name="AnchorViz" type="TextureRect" parent="."]
+offset_left = -26.0
+offset_top = -30.0
+offset_right = 102.0
+offset_bottom = 98.0
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_qcxda")
+
+[node name="Indicator" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_qhxy4")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -195.0
+offset_top = -195.0
+offset_right = 195.0
+offset_bottom = 195.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

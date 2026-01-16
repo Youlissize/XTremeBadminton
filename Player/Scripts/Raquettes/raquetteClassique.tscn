@@ -1,0 +1,72 @@
+[gd_scene load_steps=7 format=3 uid="uid://crlgdmpcbxwnj"]
+
+[ext_resource type="PackedScene" uid="uid://c01lnpoa1ka1o" path="res://Player/Scripts/Raquettes/RaquetteBase.tscn" id="1_fox7p"]
+[ext_resource type="Script" uid="uid://825iarr2sy41" path="res://Player/Scripts/Raquettes/raquetteClassique.gd" id="2_01q6g"]
+
+[sub_resource type="Animation" id="Animation_fox7p"]
+resource_name = "hit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RaquetteText:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.9),
+"transitions": PackedFloat32Array(1.51571, 0.378929),
+"update": 0,
+"values": [1.45692, 3.31613]
+}
+
+[sub_resource type="Animation" id="Animation_01q6g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RaquetteText:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.45692]
+}
+
+[sub_resource type="Animation" id="Animation_btt13"]
+resource_name = "hit_bas"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RaquetteText:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.966667),
+"transitions": PackedFloat32Array(1.93187, 0.517632),
+"update": 0,
+"values": [-0.523599, -2.00713]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8lpbd"]
+_data = {
+&"RESET": SubResource("Animation_01q6g"),
+&"hit": SubResource("Animation_fox7p"),
+&"hit_bas": SubResource("Animation_btt13")
+}
+
+[node name="RaquetteClassique" instance=ExtResource("1_fox7p")]
+script = ExtResource("2_01q6g")
+
+[node name="RaquetteText" parent="." index="0"]
+offset_left = -281.0
+offset_top = -162.0
+offset_right = 219.0
+offset_bottom = 438.0
+pivot_offset = Vector2(280, 160)
+
+[node name="AnimationPlayer" parent="." index="3"]
+libraries = {
+&"": SubResource("AnimationLibrary_8lpbd")
+}
+speed_scale = 10.0
