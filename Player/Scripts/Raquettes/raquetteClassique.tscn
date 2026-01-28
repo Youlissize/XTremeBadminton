@@ -3,21 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://c01lnpoa1ka1o" path="res://Player/Scripts/Raquettes/RaquetteBase.tscn" id="1_fox7p"]
 [ext_resource type="Script" uid="uid://825iarr2sy41" path="res://Player/Scripts/Raquettes/raquetteClassique.gd" id="2_01q6g"]
 
-[sub_resource type="Animation" id="Animation_fox7p"]
-resource_name = "hit"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("RaquetteText:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.0333333, 0.9),
-"transitions": PackedFloat32Array(1.51571, 0.378929),
-"update": 0,
-"values": [1.45692, 3.31613]
-}
-
 [sub_resource type="Animation" id="Animation_01q6g"]
 length = 0.001
 tracks/0/type = "value"
@@ -31,6 +16,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [1.45692]
+}
+
+[sub_resource type="Animation" id="Animation_fox7p"]
+resource_name = "hit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RaquetteText:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.9),
+"transitions": PackedFloat32Array(1.51571, 0.378929),
+"update": 0,
+"values": [1.45692, 3.31613]
 }
 
 [sub_resource type="Animation" id="Animation_btt13"]

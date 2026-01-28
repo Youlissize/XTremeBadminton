@@ -17,7 +17,7 @@ shader = ExtResource("2_4buw4")
 shader = ExtResource("2_4buw4")
 
 [sub_resource type="Gradient" id="Gradient_82vp7"]
-colors = PackedColorArray(0, 0, 0, 1, 1, 0.424, 0.28, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.270184, 0.719524, 0.600812, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_7r4hf"]
 gradient = SubResource("Gradient_82vp7")
