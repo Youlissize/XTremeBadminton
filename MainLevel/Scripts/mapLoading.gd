@@ -66,6 +66,7 @@ func spawn_player(player: int):
 		player_node.position = Vector2(randf_range(1000, 1500), 500)
 		
 func delete_player(player: int):
+	player_nodes[player].desinit()
 	player_nodes[player].queue_free()
 	player_nodes.erase(player)
 
@@ -78,7 +79,7 @@ func on_player_leave(player: int):
 
 # Generate the level from datas comming from map.xbm
 func buildMap():
-	var terrainRatio : float = data.width/data.height
+	var terrainRatio : float = data.width/float(data.height)
 	# pour le moment  ground = 250, celling = 100, il suffit d'adapter right et left
 	currentHeight = screenHeight - 350
 	currentWidth = currentHeight * terrainRatio
@@ -88,7 +89,7 @@ func buildMap():
 	get_node("RightBorder").position = Vector2(screenWidth-bodersWidth, 0)
 	
 	var filet = get_node("Filet")
-	var filetX = (screenWidth / 2) + currentWidth * (data.filetPos-0.5)
+	var filetX = (screenWidth * 0.5) + currentWidth * (data.filetPos-0.5)
 	filet.position = Vector2(filetX, screenHeight-250)
 	filet.scale = Vector2(1.0,data.filetSize)
 	

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=4 uid="uid://dcvcp2ujtb8xu"]
 
-[ext_resource type="Shader" uid="uid://drlrkl0b5wi4g" path="res://MainLevel/customMaterials/BackgroundTest.gdshader" id="1_41m0q"]
+[ext_resource type="Shader" uid="uid://drlrkl0b5wi4g" path="res://MainLevel/customMaterials/backgrounds/BackgroundTest.gdshader" id="1_41m0q"]
 [ext_resource type="Script" uid="uid://bgegb8tfpf38e" path="res://MainLevel/HUD/Map/mapDisplay.gd" id="1_dl5q4"]
 [ext_resource type="TileSet" uid="uid://bmawrhu0xa2jc" path="res://MainLevel/MapObjects/mapTest.tres" id="1_v6nqn"]
 

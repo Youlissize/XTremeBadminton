@@ -1,14 +1,19 @@
-[gd_scene load_steps=17 format=3 uid="uid://dlm5t26j1x75l"]
+[gd_scene load_steps=21 format=3 uid="uid://dlm5t26j1x75l"]
 
 [ext_resource type="Script" uid="uid://bis7hslkecq4c" path="res://MainLevel/Scripts/mapLoading.gd" id="1_82vp7"]
 [ext_resource type="Texture2D" uid="uid://cxtuvhh1ubuq2" path="res://Textures/fondavecfilet.jpg" id="1_dn44s"]
-[ext_resource type="Shader" uid="uid://drlrkl0b5wi4g" path="res://MainLevel/customMaterials/BackgroundTest.gdshader" id="2_4buw4"]
+[ext_resource type="Shader" uid="uid://drlrkl0b5wi4g" path="res://MainLevel/customMaterials/backgrounds/BackgroundTest.gdshader" id="2_4buw4"]
 [ext_resource type="PackedScene" uid="uid://bhv0xwjx2dx6p" path="res://MainLevel/HUD/Score/ScoreDisplay.tscn" id="2_jr3hq"]
+[ext_resource type="Shader" uid="uid://b36rhkeyqvukw" path="res://MainLevel/customMaterials/backgrounds/CenterFocus/BlackHole.gdshader" id="3_5bqcc"]
+[ext_resource type="Texture2D" uid="uid://b48bs4o2d06f7" path="res://Textures/Noise/HQ_Noise_HighEndLoss.jpg" id="4_qojm8"]
 [ext_resource type="PackedScene" uid="uid://bueuy8e621uk7" path="res://MainLevel/Scripts/Projectile/ProjectileBase.tscn" id="5_jr3hq"]
 [ext_resource type="Script" uid="uid://d2atqmgs58i2o" path="res://MainLevel/MapObjects/ground.gd" id="5_xww2o"]
+[ext_resource type="Script" uid="uid://d22aqrccmbit0" path="res://MainLevel/display_perf.gd" id="8_docy6"]
+[ext_resource type="PackedScene" uid="uid://0bprg8mbscfn" path="res://MainLevel/MapObjects/FloatingObject.tscn" id="9_5bqcc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4buw4"]
-shader = ExtResource("2_4buw4")
+shader = ExtResource("3_5bqcc")
+shader_parameter/noiseTexture = ExtResource("4_qojm8")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jr3hq"]
 shader = ExtResource("2_4buw4")
@@ -17,7 +22,7 @@ shader = ExtResource("2_4buw4")
 shader = ExtResource("2_4buw4")
 
 [sub_resource type="Gradient" id="Gradient_82vp7"]
-colors = PackedColorArray(0, 0, 0, 1, 0.270184, 0.719524, 0.600812, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.153038, 0.000170756, 0.235944, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_7r4hf"]
 gradient = SubResource("Gradient_82vp7")
@@ -32,7 +37,7 @@ bounce = 0.2
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jr3hq"]
 
 [sub_resource type="Gradient" id="Gradient_jr3hq"]
-colors = PackedColorArray(0, 0, 0, 1, 0.443779, 0.00275464, 0.191233, 1)
+colors = PackedColorArray(0.729266, 0.394707, 5.77569e-07, 1, 0.45, 0, 0.1275, 0.780392)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_xww2o"]
 gradient = SubResource("Gradient_jr3hq")
@@ -156,3 +161,14 @@ physics_material_override = SubResource("PhysicsMaterial_7r4hf")
 [node name="GroundCollision" type="CollisionShape2D" parent="Filet/Sprite2D/StaticBody2D"]
 scale = Vector2(5, 5)
 shape = SubResource("RectangleShape2D_fjjf1")
+
+[node name="Display Perf" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("8_docy6")
+
+[node name="FloatingObject" parent="." instance=ExtResource("9_5bqcc")]
+position = Vector2(643, 583)
+
+[node name="FloatingObject2" parent="." instance=ExtResource("9_5bqcc")]
+position = Vector2(291, 451)

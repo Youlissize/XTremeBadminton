@@ -1,13 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://bhv0xwjx2dx6p"]
+[gd_scene load_steps=6 format=3 uid="uid://bhv0xwjx2dx6p"]
 
 [ext_resource type="Texture2D" uid="uid://cadlfytdtswru" path="res://icon.svg" id="1_6vv5e"]
 [ext_resource type="Script" uid="uid://dd82ywmj20hgm" path="res://MainLevel/HUD/Score/scoreDisplay.gd" id="1_rm60b"]
+[ext_resource type="Shader" uid="uid://drugjk6joqrco" path="res://MainLevel/customMaterials/MatchHUD/scoreHUD.gdshader" id="3_ow0p0"]
+[ext_resource type="Texture2D" uid="uid://b48bs4o2d06f7" path="res://Textures/Noise/HQ_Noise_HighEndLoss.jpg" id="4_rbsrk"]
 
-[sub_resource type="Gradient" id="Gradient_rm60b"]
-colors = PackedColorArray(0, 0, 0, 1, 0.5, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_ow0p0"]
-gradient = SubResource("Gradient_rm60b")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rbsrk"]
+shader = ExtResource("3_ow0p0")
+shader_parameter/noiseTexture = ExtResource("4_rbsrk")
 
 [node name="ScoreDisplay" type="Node2D"]
 top_level = true
@@ -22,15 +22,13 @@ offset_bottom = 40.0
 layout_mode = 2
 
 [node name="LeftScore" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(30, 30)
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftScore"]
-layout_mode = 2
-texture = SubResource("GradientTexture2D_ow0p0")
 
 [node name="LeftDisplay" type="MenuButton" parent="MarginContainer/HBoxContainer/LeftScore"]
 layout_mode = 2
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 30
 text = "0"
 
 [node name="Middle" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
@@ -38,18 +36,22 @@ custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/Middle"]
+modulate = Color(1, 1, 1, 0.388235)
+z_index = 1
 layout_mode = 2
 texture = ExtResource("1_6vv5e")
 
 [node name="RightScore" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(30, 30)
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/RightScore"]
-layout_mode = 2
-texture = SubResource("GradientTexture2D_ow0p0")
-flip_h = true
 
 [node name="RightDisplay" type="MenuButton" parent="MarginContainer/HBoxContainer/RightScore"]
 layout_mode = 2
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 30
 text = "0"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_rbsrk")
+offset_right = 264.0
+offset_bottom = 128.0

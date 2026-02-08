@@ -43,8 +43,8 @@ func save_map():
 	print("Saving map : ", mapName)
 	print("--datas : ", json_string)
 
-func load_map(name : String) -> bool:
-	var path = name
+func load_map(mName : String) -> bool:
+	var path = mName
 	if (!name.ends_with(".xbm")):
 		path = path + ".xbm"
 	path = "user://maps//"+path

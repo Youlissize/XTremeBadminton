@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://0bprg8mbscfn"]
+
+[ext_resource type="Shader" uid="uid://b36rhkeyqvukw" path="res://MainLevel/customMaterials/backgrounds/CenterFocus/BlackHole.gdshader" id="2_04ah8"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_04ah8"]
+bounce = 0.7
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jmbkc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q6x4y"]
+shader = ExtResource("2_04ah8")
+
+[node name="FloatingObject" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 3
+mass = 5.0
+physics_material_override = SubResource("PhysicsMaterial_04ah8")
+gravity_scale = 0.02
+linear_damp = 0.2
+angular_damp = 0.2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(12, 3)
+shape = SubResource("RectangleShape2D_jmbkc")
+
+[node name="ColorRect" type="ColorRect" parent="CollisionShape2D"]
+material = SubResource("ShaderMaterial_q6x4y")
+offset_left = -9.83333
+offset_top = -10.0
+offset_right = 10.1667
+offset_bottom = 10.0
