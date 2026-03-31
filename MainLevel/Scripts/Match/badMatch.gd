@@ -1,6 +1,6 @@
 extends Node
 
-const Globals := preload("res://MainLevel/Scripts/globalStuff.gd")
+const Globals := preload("res://MainLevel/Scripts/Main/globalStuff.gd")
 var targetScore: int = 11
 var pointDiff : int = 2
 
@@ -43,6 +43,7 @@ func begin() -> void:
 	state = matchState.BEGINNING
 	# TODO :animations
 	pass
+	
 
 func giveServe(toLeftPlayer : bool = true) -> void:
 	state = matchState.SERVING

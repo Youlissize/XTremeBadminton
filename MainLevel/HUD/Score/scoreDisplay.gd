@@ -1,5 +1,5 @@
 extends Node2D
-const Globals := preload("res://MainLevel/Scripts/globalStuff.gd")
+const Globals := preload("res://MainLevel/Scripts/Main/globalStuff.gd")
 
 var left := 0
 var right := 0

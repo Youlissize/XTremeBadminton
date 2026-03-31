@@ -1,6 +1,6 @@
 [gd_scene load_steps=23 format=3 uid="uid://dlm5t26j1x75l"]
 
-[ext_resource type="Script" uid="uid://bis7hslkecq4c" path="res://MainLevel/Scripts/mapLoading.gd" id="1_82vp7"]
+[ext_resource type="Script" uid="uid://bis7hslkecq4c" path="res://MainLevel/Scripts/Main/mapLoading.gd" id="1_82vp7"]
 [ext_resource type="Texture2D" uid="uid://cxtuvhh1ubuq2" path="res://Textures/fondavecfilet.jpg" id="1_dn44s"]
 [ext_resource type="Shader" uid="uid://drlrkl0b5wi4g" path="res://MainLevel/customMaterials/backgrounds/BackgroundTest.gdshader" id="2_4buw4"]
 [ext_resource type="Shader" uid="uid://do8a7qf444oym" path="res://MainLevel/customMaterials/backgrounds/Voronoi/VoronoiBalls.gdshader" id="2_53suw"]
@@ -8,10 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://bueuy8e621uk7" path="res://MainLevel/Scripts/Projectile/ProjectileBase.tscn" id="5_jr3hq"]
 [ext_resource type="Script" uid="uid://d2atqmgs58i2o" path="res://MainLevel/MapObjects/ground.gd" id="5_xww2o"]
 [ext_resource type="PackedScene" uid="uid://dqc7e3745nrda" path="res://MainLevel/MapObjects/PowerUps/gravityAttraction.tscn" id="8_53suw"]
-[ext_resource type="Script" uid="uid://d22aqrccmbit0" path="res://MainLevel/Scripts/display_perf.gd" id="8_docy6"]
-[ext_resource type="PackedScene" uid="uid://bhxi7h8crtlj" path="res://MainLevel/Scripts/TileMapLoader.tscn" id="12_2ogm3"]
+[ext_resource type="Script" uid="uid://d22aqrccmbit0" path="res://MainLevel/Scripts/Other/display_perf.gd" id="8_docy6"]
+[ext_resource type="PackedScene" uid="uid://bhxi7h8crtlj" path="res://MainLevel/Scripts/Main/TileMapLoader.tscn" id="12_2ogm3"]
 [ext_resource type="PackedScene" uid="uid://0bprg8mbscfn" path="res://MainLevel/MapObjects/FloatingObject.tscn" id="12_5eoi4"]
-[ext_resource type="Script" uid="uid://u2jn5mhqf5t7" path="res://MainLevel/Scripts/mainCam.gd" id="12_53suw"]
+[ext_resource type="Script" uid="uid://u2jn5mhqf5t7" path="res://MainLevel/Scripts/Main/mainCam.gd" id="12_53suw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4buw4"]
 shader = ExtResource("2_53suw")
@@ -48,9 +48,8 @@ height = 30
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fjjf1"]
 size = Vector2(33.6286, 13.6001)
 
-[node name="CustomMapLoading" type="Node2D" node_paths=PackedStringArray("ground")]
+[node name="CustomMapLoading" type="Node2D"]
 script = ExtResource("1_82vp7")
-ground = NodePath("Ground/StaticBody2D")
 
 [node name="Background" type="Sprite2D" parent="."]
 
@@ -167,12 +166,6 @@ shape = SubResource("WorldBoundaryShape2D_jr3hq")
 
 [node name="ProjectileBase" parent="." instance=ExtResource("5_jr3hq")]
 position = Vector2(515, 624)
-
-[node name="HSlider" type="HSlider" parent="."]
-offset_left = 716.0
-offset_top = 364.0
-offset_right = 913.0
-offset_bottom = 380.0
 
 [node name="Filet" type="Node2D" parent="."]
 position = Vector2(860, 830)

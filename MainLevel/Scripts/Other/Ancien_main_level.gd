@@ -1,6 +1,6 @@
 extends Node2D
-const Globals := preload("res://MainLevel/Scripts/globalStuff.gd")
-var data := preload("res://MainLevel/Scripts/mapData.gd").new()
+const Globals := preload("res://MainLevel/Scripts/Main/globalStuff.gd")
+var data := preload("res://MainLevel/Scripts/Main/mapData.gd").new()
 @export var player1: CharacterBody2D
 @export var ground: StaticBody2D
 @export var volant: PhysicsBody2D

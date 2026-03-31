@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const Globals := preload("res://MainLevel/Scripts/globalStuff.gd")
+const Globals := preload("res://MainLevel/Scripts/Main/globalStuff.gd")
 
 # PARAMS
 @export var speed := 800.0

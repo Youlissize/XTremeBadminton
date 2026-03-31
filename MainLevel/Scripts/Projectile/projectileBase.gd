@@ -1,7 +1,7 @@
 #@tool # makes function _process called in the editor
 extends RigidBody2D
 
-const Globals := preload("res://MainLevel/Scripts/globalStuff.gd")
+const Globals := preload("res://MainLevel/Scripts/Main/globalStuff.gd")
 
 @export var size := 1.0
 #var customGravity := 1.0
