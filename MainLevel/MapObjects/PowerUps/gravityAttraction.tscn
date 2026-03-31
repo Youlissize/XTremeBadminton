@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://dqc7e3745nrda"]
+
+[ext_resource type="PackedScene" uid="uid://dvsncfxo1twp5" path="res://MainLevel/MapObjects/PowerUps/PowerUpBase.tscn" id="1_qfrw8"]
+[ext_resource type="Script" uid="uid://ckhxerufjdqmv" path="res://MainLevel/MapObjects/PowerUps/gravity_attraction.gd" id="2_tu10h"]
+[ext_resource type="Shader" uid="uid://sfgpkcvkov34" path="res://MainLevel/customMaterials/PowerUps/BlackHolePowerUp.gdshader" id="3_8cagk"]
+[ext_resource type="Texture2D" uid="uid://b48bs4o2d06f7" path="res://Textures/Noise/HQ_Noise_HighEndLoss.jpg" id="4_huyui"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7pbqv"]
+shader = ExtResource("3_8cagk")
+shader_parameter/noiseTexture = ExtResource("4_huyui")
+
+[node name="GravityAttraction" instance=ExtResource("1_qfrw8")]
+script = ExtResource("2_tu10h")
+attractivty = 1.0
+faloff = 10.0
+radius = 800.0
+
+[node name="ColorRect" parent="." index="1"]
+modulate = Color(1, 1, 1, 0.372549)
+material = SubResource("ShaderMaterial_7pbqv")
+offset_left = -251.0
+offset_top = -251.0
+offset_right = 249.0
+offset_bottom = 249.0

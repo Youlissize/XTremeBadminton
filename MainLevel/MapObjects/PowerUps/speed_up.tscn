@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpwougpqdrbt8"]
+
+[ext_resource type="PackedScene" uid="uid://dvsncfxo1twp5" path="res://MainLevel/MapObjects/PowerUps/PowerUpBase.tscn" id="1_m2s8x"]
+[ext_resource type="Script" uid="uid://bnr2qkiri4iti" path="res://speed_up.gd" id="2_qo5qa"]
+
+[node name="SpeedUp" instance=ExtResource("1_m2s8x")]
+script = ExtResource("2_qo5qa")
+strength = 0.5
+
+[node name="ColorRect" parent="." index="1"]
+offset_left = -101.0
+offset_top = -54.0
+offset_bottom = 57.0

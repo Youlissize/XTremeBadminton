@@ -26,7 +26,6 @@ void fragment() {
 	phi = abs(phi);
 	
 	float opacity = 0.0;
-	float e = 0.05; //epaisseur du trait
 	vec3 color = vec3(1.0,1.0,1.0);
 	if ( r < 0.5 && r > distMinUV )
 	{
@@ -42,7 +41,7 @@ void fragment() {
 	
 	
 	
-	COLOR = vec4(color.x, color.y, color.z , opacity * 0.3);
+	COLOR = vec4(color.x, color.y, color.z , opacity * 0.25);
 }
 
 //void light() {

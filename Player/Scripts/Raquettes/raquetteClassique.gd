@@ -8,7 +8,7 @@ var angleTopEnd := 140.0
 var angleBotStart := 80.0
 var angleBotEnd := 170.0
 
-var hitForce := 1500.0
+var hitForce := 2000.0
 var hitSafety := 0.2
 
 
@@ -53,7 +53,5 @@ func hitVolant(volant : PhysicsBody2D) -> bool:
 	var hitStrength : float #puissance du tir
 	hitStrength = volant.get("linear_velocity").length()*0.3 + hitForce
 	
-	volant.set("linear_velocity", hitDirection*hitStrength)
-	volant.set("gravity_scale", 1) # TODO : remove this
-	
+	volant.hitted(hitDirection*hitStrength)
 	return true

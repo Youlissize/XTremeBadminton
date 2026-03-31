@@ -3,11 +3,12 @@ extends CharacterBody2D
 const Globals := preload("res://MainLevel/Scripts/globalStuff.gd")
 
 # PARAMS
-var speed := 600.0
-var gravity := 1500
+@export var speed := 800.0
+@export var gravity := 1500
 var jumpPreshotAcceptance := 0.1 * 1000 # in ms
-var hitDelay := 0.25 * 1000 # in ms
-var hitPreshotAcceptance := 0.1 * 1000 # in ms
+@export var hitDelay := 0.25 * 1000 # in ms
+var hitPreshotAcceptance := 0.15 * 1000 # in ms
+@export var objectForce := 50
 
 # INPUT
 signal leave
@@ -16,12 +17,17 @@ var input
 
 # utility
 var inAir := true
+var quickFall := false
+var fallSpeed := 2.0
+var onObject := false
+var onObjectTimer := 0.0
 var isLeftSide : bool = true
 var X_dir := 0.0
 var Y_speed := 0.0
 var lastPressJumpTime := 0
 var lastHitTime := 0
 var hitBuffer := Vector2(0,0) # represents : timer count , type of hit pressed (0=nothing,1=base hit)
+var minAngleToGround := 0.1
 
 #REFERENCES AUX TRUCS
 var ground : StaticBody2D
@@ -79,6 +85,10 @@ func _process(_delta):
 		if (hitBuffer.x<0):
 			hit(true)
 			hitBuffer = Vector2(0,0)
+	if (onObjectTimer >0):
+		onObjectTimer -= _delta
+		if (onObjectTimer<0):
+			onObject = false
 
 func _input(_event: InputEvent) -> void:
 		# Input execute
@@ -101,34 +111,65 @@ func _physics_process(delta: float) -> void:
 	
 	var collision := move_and_collide(motion)
 	if (collision != null):
+		var c = collision.get_collider()
+		#Tentative pour "pousser" les floating objects
+		if (c):
+			#print(c.get_class())
+			if(c.get_class() == "RigidBody2D"):
+				c.set("linear_velocity", -10.0*collision.get_normal()*objectForce + c.get("linear_velocity"))
+				
+				#c.set("angular_velocity", c.get("angular_velocity")*1.2)
 		if(collision.get_collider()== Globals.ground):
 			touchedGround()
-#		if (collision.get_normal().x == 0.0):
-#			Y_speed = 0
+		elif (collision.get_normal().y < -1.0*minAngleToGround):# && collision.get_collider().is_class(onFloatingObject())):
+			onFloatingObject()
+		elif (collision.get_normal().y > 0.5 && c.get_class() != "RigidBody2D"): # plafond
+			Y_speed = 0
 		else:
 			motion = Vector2(0.0, Y_speed* delta)
 			move_and_collide(motion)
 	if (inAir):
-		Y_speed += gravity*delta
+		if (quickFall):
+			Y_speed += gravity*delta*fallSpeed
+		else:
+			Y_speed += gravity*delta
 				
 func touchedGround():
 	inAir=false
+	quickFall = false
 	Y_speed = 0
 	# Check if 'jump' was hit just before
 	if (Time.get_ticks_msec() < lastPressJumpTime + jumpPreshotAcceptance):
 		jump()
-	
-func allowedToJump():
-	return !inAir
+
+func onFloatingObject():
+	#return
+	#Y_speed = 0
+	#inAir=false
+	quickFall = false
+	Y_speed *= 0.8
+	if (Time.get_ticks_msec() < lastPressJumpTime + jumpPreshotAcceptance):
+		jump()
+	onObject = true
+	onObjectTimer = 0.5
+
+func allowedToJump() -> bool:
+	if(!inAir):
+		return true
+	elif (onObject):
+		return true
+	else:
+		return false
 			
 func jump():
-	if (allowedToJump):
+	if (allowedToJump()):
 		lastPressJumpTime = 0
+		quickFall = false
 	else:
 		lastPressJumpTime = Time.get_ticks_msec()
 
 func startFalling():
-	pass
+	quickFall = true
 
 # TAPER DRU
 func hit(ignoreTiming := false) -> bool:

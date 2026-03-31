@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://dvsncfxo1twp5"]
+
+[ext_resource type="Script" uid="uid://cjdudcdod675i" path="res://MainLevel/MapObjects/PowerUps/power_up_base.gd" id="1_5cp8b"]
+[ext_resource type="Shader" uid="uid://drugjk6joqrco" path="res://MainLevel/customMaterials/MatchHUD/scoreHUD.gdshader" id="2_hexga"]
+[ext_resource type="Texture2D" uid="uid://cjpl0padt5th6" path="res://Textures/brasmancheraquette.png" id="2_xxwv2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u8e3e"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u8e3e"]
+shader = ExtResource("2_hexga")
+shader_parameter/noiseTexture = ExtResource("2_xxwv2")
+
+[node name="PowerUp" type="StaticBody2D"]
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("1_5cp8b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(10, 10)
+shape = SubResource("CircleShape2D_u8e3e")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0.337255)
+material = SubResource("ShaderMaterial_u8e3e")
+offset_left = -94.0
+offset_top = -96.0
+offset_right = 97.0
+offset_bottom = 100.0

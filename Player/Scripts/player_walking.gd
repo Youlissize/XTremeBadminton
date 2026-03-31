@@ -1,7 +1,6 @@
 extends "res://Player/Scripts/player_base.gd"
 
-var jumpForce := 700
-var fallingFactor := 2.0
+var jumpForce := 850
 
 
 func _ready() -> void:
@@ -13,7 +12,7 @@ func _process(delta: float) -> void:
 
 func jump():
 	super.jump()
-	if (!inAir):
+	if allowedToJump():
 		Y_speed = -jumpForce
 		inAir = true
 

@@ -63,11 +63,4 @@ func givePorjectileToServe(toLeftPlayer : bool = true) -> void:
 	var targetLocation = serveur.position + Vector2(0, -220)
 	if (Globals.projectiles.size()):
 		var proj = Globals.projectiles[0]
-		
-		var temp = proj.collision_mask
-		proj.collision_mask = 0
-		proj.move_and_collide(targetLocation-proj.position)
-		proj.collision_mask = temp
-		proj.set("linear_velocity",Vector2(0,0))
-		proj.set("gravity_scale", 0)
-		proj.isActive = true
+		proj.teleportForService(targetLocation)
