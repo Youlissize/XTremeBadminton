@@ -15,15 +15,6 @@ shader = ExtResource("4_qhxy4")
 [node name="RaquetteBase" type="Node2D"]
 script = ExtResource("1_gdxg8")
 
-[node name="RaquetteText" type="TextureRect" parent="."]
-offset_left = 40.0001
-offset_top = -150.0
-offset_right = 480.0
-offset_bottom = 360.0
-rotation = 1.45692
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_qhxy4")
-
 [node name="AnchorViz" type="TextureRect" parent="."]
 visible = false
 offset_left = -26.0
@@ -47,7 +38,7 @@ offset_bottom = 195.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Indicator" type="ColorRect" parent="."]
+[node name="ColorIndicator" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_7i6cp")
 anchors_preset = 8
 anchor_left = 0.5
@@ -62,3 +53,10 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(-69.55519, -19.019245)
+rotation = 1.4992712
+scale = Vector2(0.48447248, 0.49269873)
+texture = ExtResource("3_qhxy4")

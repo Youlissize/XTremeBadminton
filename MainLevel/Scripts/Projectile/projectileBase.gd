@@ -34,12 +34,10 @@ func _physics_process(delta: float) -> void:
 			#additionalForces += 
 			var f = pu.getPowerUpForce(self)
 			self.apply_central_force(f)
-	#if (currentPowerUps.size()):
-	#	self.apply_impulse(additionalForces, self.global_position)
-	#test
-	#
-	#	currentPowerUps[0].exit(self)
-		#currentPowerUps.remove_at(0)
+	
+	#global_rotation = 
+	global_rotation = linear_velocity.angle()
+
 
 func _on_body_entered(body: Node) -> void:
 	if body.has_method("hit") && isActive:
@@ -60,7 +58,7 @@ func teleportForService(targetLocation : Vector2) ->void:
 		move_and_collide(targetLocation-position)
 		collision_mask = temp
 		set("linear_velocity",Vector2(0,0))
-		set("gravity_scale", 0.08)
+		#set("gravity_scale", 0.08)
 		isActive = true
 		waitingForService = true
 		

@@ -22,9 +22,10 @@ func hitVolant(volant : PhysicsBody2D) -> bool:
 	if (animation):
 		if (enHaut): 
 			animation.play("hit")
+			animation.queue("invisible")
 		else:
 			animation.play("hit_bas")
-	
+			animation.queue("invisible")
 	
 	#Test distance epaule-volant
 	var dist = epauleToVolant.length()

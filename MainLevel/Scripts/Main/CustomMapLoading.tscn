@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dlm5t26j1x75l"]
+[gd_scene load_steps=22 format=3 uid="uid://dlm5t26j1x75l"]
 
 [ext_resource type="Script" uid="uid://bis7hslkecq4c" path="res://MainLevel/Scripts/Main/mapLoading.gd" id="1_82vp7"]
 [ext_resource type="Texture2D" uid="uid://cxtuvhh1ubuq2" path="res://Textures/fondavecfilet.jpg" id="1_dn44s"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://bhv0xwjx2dx6p" path="res://MainLevel/HUD/Score/ScoreDisplay.tscn" id="2_jr3hq"]
 [ext_resource type="PackedScene" uid="uid://bueuy8e621uk7" path="res://MainLevel/Scripts/Projectile/ProjectileBase.tscn" id="5_jr3hq"]
 [ext_resource type="Script" uid="uid://d2atqmgs58i2o" path="res://MainLevel/MapObjects/ground.gd" id="5_xww2o"]
-[ext_resource type="PackedScene" uid="uid://dqc7e3745nrda" path="res://MainLevel/MapObjects/PowerUps/gravityAttraction.tscn" id="8_53suw"]
 [ext_resource type="Script" uid="uid://d22aqrccmbit0" path="res://MainLevel/Scripts/Other/display_perf.gd" id="8_docy6"]
 [ext_resource type="PackedScene" uid="uid://bhxi7h8crtlj" path="res://MainLevel/Scripts/Main/TileMapLoader.tscn" id="12_2ogm3"]
 [ext_resource type="PackedScene" uid="uid://0bprg8mbscfn" path="res://MainLevel/MapObjects/FloatingObject.tscn" id="12_5eoi4"]
@@ -134,12 +133,6 @@ physics_material_override = SubResource("PhysicsMaterial_7r4hf")
 [node name="GroundCollision" type="CollisionShape2D" parent="LeftBorder/StaticBody2D"]
 rotation = 1.5708
 shape = SubResource("WorldBoundaryShape2D_jr3hq")
-
-[node name="GravityAttraction" parent="LeftBorder" instance=ExtResource("8_53suw")]
-position = Vector2(870, 163)
-attractivty = 0.1
-faloff = 8.0
-radius = 1000.0
 
 [node name="RightBorder" type="Node2D" parent="."]
 position = Vector2(1770, 0)
