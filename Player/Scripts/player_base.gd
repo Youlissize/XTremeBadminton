@@ -64,16 +64,21 @@ func desinit() :
 func setSide(isLeft : bool) -> void :
 	isLeftSide = isLeft
 	raquette.leftSide = isLeftSide
+	var sign :=1.0
 	if (!isLeft):
-		$Perso.scale.x = -1.0 * abs($Perso.scale.x) # WARNING scale négative provoque probablement des bugs!
-		$Epaule.scale.x = -1.0 * abs($Epaule.scale.x)
+		sign = -1.0
 		Globals.currentMatch.teamLeft.erase(self)
 		Globals.currentMatch.teamRight.append(self)
 	if isLeft:
-		$Perso.scale.x = abs($Perso.scale.x)
-		$Epaule.scale.x = abs($Epaule.scale.x)
+		sign = 1.0
 		Globals.currentMatch.teamRight.erase(self)
 		Globals.currentMatch.teamLeft.append(self)
+	
+	$Perso.scale.x = sign * abs($Perso.scale.x) # WARNING scale négative provoque probablement des bugs!
+	$Epaule.scale.x = sign * abs($Epaule.scale.x)
+	#$Epaule/Raquette/Sprite2D.scale.x = sign * abs($Epaule/Raquette/Sprite2D.scale.x)
+	$AnimatedSprite2D.scale.x = sign * abs($AnimatedSprite2D.scale.x)
+		
 
 func teleport(newPos : Vector2)	:
 	global_position = newPos
@@ -137,7 +142,7 @@ func _physics_process(delta: float) -> void:
 				
 	if(isServing):
 		# teleport volant each frame until service
-		Globals.projectiles[0].global_position = self.global_position + getForwardVector()*70+Vector2(0,-200)
+		Globals.projectiles[0].global_position = self.global_position + getForwardVector()*(-20)+Vector2(0,-240)
 		
 func touchedGround():
 	inAir=false
@@ -200,5 +205,5 @@ func hit(ignoreTiming := false) -> bool:
 
 func serve():
 	isServing = false
-	Globals.projectiles[0].hitted(Vector2(0, -600))
+	Globals.projectiles[0].hitted(Vector2(0, -300))
 	#TODO : petit lancé de balle

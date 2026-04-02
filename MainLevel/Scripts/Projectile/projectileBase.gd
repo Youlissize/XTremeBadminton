@@ -36,6 +36,7 @@ func _physics_process(delta: float) -> void:
 			self.apply_central_force(f)
 	
 	#global_rotation = 
+	global_rotation = linear_velocity.angle()
 
 
 func _on_body_entered(body: Node) -> void:
@@ -57,7 +58,7 @@ func teleportForService(targetLocation : Vector2) ->void:
 		move_and_collide(targetLocation-position)
 		collision_mask = temp
 		set("linear_velocity",Vector2(0,0))
-		set("gravity_scale", 0.08)
+		#set("gravity_scale", 0.08)
 		isActive = true
 		waitingForService = true
 		

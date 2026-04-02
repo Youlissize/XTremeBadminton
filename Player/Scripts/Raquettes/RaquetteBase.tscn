@@ -55,6 +55,7 @@ grow_vertical = 2
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 2
 position = Vector2(-69.55519, -19.019245)
 rotation = 1.4992712
 scale = Vector2(0.48447248, 0.49269873)

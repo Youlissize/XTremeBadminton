@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://crlgdmpcbxwnj"]
+[gd_scene load_steps=9 format=3 uid="uid://crlgdmpcbxwnj"]
 
 [ext_resource type="PackedScene" uid="uid://c01lnpoa1ka1o" path="res://Player/Scripts/Raquettes/RaquetteBase.tscn" id="1_fox7p"]
 [ext_resource type="Script" uid="uid://825iarr2sy41" path="res://Player/Scripts/Raquettes/raquetteClassique.gd" id="2_01q6g"]
@@ -16,7 +16,19 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [1.8291050560900575]
+"values": [1.8291050560900577]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_fox7p"]
@@ -33,6 +45,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [2.5848326222036024, 4.58323461573711]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_btt13"]
 resource_name = "hit_bas"
@@ -48,12 +72,40 @@ tracks/0/keys = {
 "update": 0,
 "values": [0.9267698328089894, -0.80110615]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_8lpbd"]
+resource_name = "invisible"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8lpbd"]
 _data = {
 &"RESET": SubResource("Animation_01q6g"),
 &"hit": SubResource("Animation_fox7p"),
-&"hit_bas": SubResource("Animation_btt13")
+&"hit_bas": SubResource("Animation_btt13"),
+&"invisible": SubResource("Animation_8lpbd")
 }
 
 [node name="RaquetteClassique" instance=ExtResource("1_fox7p")]

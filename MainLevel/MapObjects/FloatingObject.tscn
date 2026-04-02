@@ -17,7 +17,7 @@ collision_mask = 3
 collision_priority = 0.1
 mass = 10.0
 physics_material_override = SubResource("PhysicsMaterial_04ah8")
-gravity_scale = 0.02
+gravity_scale = 0.08
 angular_velocity = 0.174533
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

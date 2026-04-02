@@ -1,46 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://b3yq873ypw1av"]
+[gd_scene load_steps=5 format=3 uid="uid://b3yq873ypw1av"]
 
 [ext_resource type="Script" uid="uid://bctqxqmu1re5s" path="res://Player/Scripts/player_base.gd" id="1_5g0nh"]
 [ext_resource type="Texture2D" uid="uid://bwj337npmg6l4" path="res://Textures/char.png" id="2_7r5ub"]
 [ext_resource type="PackedScene" uid="uid://crlgdmpcbxwnj" path="res://Player/Scripts/Raquettes/raquetteClassique.tscn" id="4_vvp7v"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jh3ds"]
-
-[sub_resource type="Animation" id="Animation_vvp7v"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Epaule:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.966667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 6.28319]
-}
-
-[sub_resource type="Animation" id="Animation_7r5ub"]
-resource_name = "frapperHaut"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Epaule:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.966667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 6.28319]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_n4epv"]
-_data = {
-&"RESET": SubResource("Animation_vvp7v"),
-&"frapperHaut": SubResource("Animation_7r5ub")
-}
 
 [node name="PlayerBase" type="CharacterBody2D"]
 collision_mask = 5
@@ -65,12 +29,6 @@ offset = Vector2(-50.000004, 20.833334)
 position = Vector2(0, 0.99998474)
 scale = Vector2(4, 10.205)
 shape = SubResource("CapsuleShape2D_jh3ds")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_n4epv")
-}
-speed_scale = 3.0
 
 [node name="Epaule" type="Node2D" parent="."]
 position = Vector2(5, -89.000015)
