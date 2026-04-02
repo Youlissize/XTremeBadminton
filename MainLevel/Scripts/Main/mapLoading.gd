@@ -29,14 +29,6 @@ func _ready() -> void:
 	else:
 		print("Failed to load map : ", mapName)
 	
-	#if(player1):
-	#	player1.set("ground", ground)
-		
-
-
-
-
-
 
 var mapBlockSize = 64.0
 # Generate the level from datas comming from map.xbm

@@ -60,7 +60,7 @@ func teleportForService(targetLocation : Vector2) ->void:
 		move_and_collide(targetLocation-position)
 		collision_mask = temp
 		set("linear_velocity",Vector2(0,0))
-		set("gravity_scale", 0)
+		set("gravity_scale", 0.08)
 		isActive = true
 		waitingForService = true
 		

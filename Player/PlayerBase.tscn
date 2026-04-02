@@ -49,13 +49,20 @@ motion_mode = 1
 safe_margin = 0.001
 script = ExtResource("1_5g0nh")
 
-[node name="Perso" type="Sprite2D" parent="."]
+[node name="Perso_Old" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(-4.49999, -5.5)
 scale = Vector2(0.461364, 0.770588)
 texture = ExtResource("2_7r5ub")
 
+[node name="Perso" type="Sprite2D" parent="."]
+position = Vector2(-1.0000019, -16)
+scale = Vector2(0.57, 0.816)
+texture = ExtResource("2_7r5ub")
+offset = Vector2(-50, 0)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(15, 0)
+position = Vector2(0, 0.99998474)
 scale = Vector2(4, 10.205)
 shape = SubResource("CapsuleShape2D_jh3ds")
 
@@ -66,6 +73,6 @@ libraries = {
 speed_scale = 3.0
 
 [node name="Epaule" type="Node2D" parent="."]
-position = Vector2(20, -90)
+position = Vector2(5, -89.000015)
 
 [node name="Raquette" parent="Epaule" instance=ExtResource("4_vvp7v")]

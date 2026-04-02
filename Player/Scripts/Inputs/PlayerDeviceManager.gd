@@ -21,7 +21,7 @@ func join(device: int):
 		# "team" and "car" are remnants from my game just to provide an example
 		player_data[player] = {
 			"device": device,
-			"team":0,
+#			"team":0,
 		}
 		player_joined.emit(player)
 

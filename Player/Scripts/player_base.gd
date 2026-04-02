@@ -11,7 +11,7 @@ var hitPreshotAcceptance := 0.15 * 1000 # in ms
 @export var objectForce := 50
 
 # INPUT
-signal leave
+#signal leave
 var player: int
 var input
 
@@ -38,22 +38,20 @@ var epaule : Node2D
 
 # INITIALISATION BIDULES
 func _ready() -> void:
-	position = Vector2(1000,500)
 	pass
 
 # INPUTS
 # call this function when spawning this player to set up the input object based on the device
-func init(player_num: int, device: int):
-	player = player_num
-	input = DeviceInput.new(device)
-	print("INIT : Player ", player_num, " with Device ",device)
-	
+func init(deviceInput : DeviceInput, isLeftSide : bool)->void:
+	#player = player_num
+	input = deviceInput
+	#print("INIT : Player ", player_num, " with Device ",device)
 	
 	anim = get_node("AnimationPlayer")
 	epaule = get_node("Epaule")
 	raquette = get_node("Epaule/Raquette")
 	raquette.player = self
-	setSide(player_num%2==0) #à droite si impair
+	setSide(isLeftSide)
 
 func desinit() :
 	var m = Globals.currentMatch
@@ -66,18 +64,20 @@ func setSide(isLeft : bool) -> void :
 	isLeftSide = isLeft
 	raquette.leftSide = isLeftSide
 	if (!isLeft):
-		scale = Vector2(-1,1)
-	if isLeft:
-		Globals.currentMatch.teamLeft.append(self)
-	else:
+		$Perso.scale.x = -1.0 * abs($Perso.scale.x) # WARNING scale négative provoque probablement des bugs!
+		$Epaule.scale.x = -1.0 * abs($Epaule.scale.x)
+		Globals.currentMatch.teamLeft.erase(self)
 		Globals.currentMatch.teamRight.append(self)
+	if isLeft:
+		$Perso.scale.x = abs($Perso.scale.x)
+		$Epaule.scale.x = abs($Epaule.scale.x)
+		Globals.currentMatch.teamRight.erase(self)
+		Globals.currentMatch.teamLeft.append(self)
+
+func teleport(newPos : Vector2)	:
+	global_position = newPos
 
 func _process(_delta):
-	# let the player leave by pressing the "join" button
-	if input.is_action_just_pressed("join"):
-		# an alternative to this is just call PlayerManager.leave(player)
-		# but that only works if you set up the PlayerManager singleton
-		leave.emit(player)
 
 	# Handle timer for the waiting "hit"
 	if (hitBuffer.y > 0):

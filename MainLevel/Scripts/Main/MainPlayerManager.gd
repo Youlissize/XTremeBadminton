@@ -4,8 +4,10 @@ extends Node
 #@onready var player_manager = $PlayerManager #res://Player/Scripts/Inputs/PlayerDeviceManager.gd
 var player_manager := preload("res://Player/Scripts/Inputs/PlayerDeviceManager.gd").new()
 # map from player integer to the player node
-var player_nodes = {}
-
+#var player_nodes = {}
+var player_selector_nodes = {}
+#const player_scene = preload("res://Player/Player_walking.tscn")
+const player_selector_scene = preload("res://Player/Scripts/PlayerSelector.tscn")
 
 
 
@@ -17,28 +19,36 @@ func _process(_delta):
 	player_manager.handle_join_input()
 
 func spawn_player(player: int):
-	# create the player node
-	var player_scene = load("res://Player/Player_walking.tscn")
-	var player_node = player_scene.instantiate()
+		#Spawn player selector
+	var player_selector_node = player_selector_scene.instantiate()
+	add_child(player_selector_node)
 
-	player_node.leave.connect(on_player_leave)
-	player_nodes[player] = player_node
-	
-	# let the player know which device controls it
-	var device = player_manager.get_player_device(player)
-	player_node.init(player, device)
-	# add the player to the tree
-	add_child(player_node)
+	var isLeftSide := player%2==0;
 	# spawn position
-	if (player_node.isLeftSide):
-		player_node.position = Vector2(randf_range(100, 500), 500)
+	if (isLeftSide):
+		player_selector_node.position = Vector2(randf_range(100, 500), 500)
 	else:
-		player_node.position = Vector2(randf_range(1000, 1500), 500)
+		player_selector_node.position = Vector2(randf_range(1500, 2000), 500)
 		
+	var device = player_manager.get_player_device(player)
+	player_selector_node.init(player, device)
+	player_selector_node.leave.connect(on_player_leave)
+	
+	player_selector_nodes[player] = player_selector_node
+	
+	
+	
+
+
+
 func delete_player(player: int):
-	player_nodes[player].desinit()
-	player_nodes[player].queue_free()
-	player_nodes.erase(player)
+	#player_nodes[player].desinit()
+	#player_nodes[player].queue_free()
+	#player_nodes.erase(player)
+	#TODO : delete player_selector
+	player_selector_nodes[player].desinit()
+	player_selector_nodes[player].queue_free()
+	player_selector_nodes.erase(player)
 
 func on_player_leave(player: int):
 	# just let the player manager know this player is leaving

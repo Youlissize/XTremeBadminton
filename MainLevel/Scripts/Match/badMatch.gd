@@ -1,5 +1,6 @@
 extends Node
 
+#var PlayerManager := preload("res://MainLevel/Scripts/Main/MainPlayerManager.gd").new()
 const Globals := preload("res://MainLevel/Scripts/Main/globalStuff.gd")
 var targetScore: int = 11
 var pointDiff : int = 2
@@ -9,8 +10,8 @@ var leftScore := 0
 var teamRight := Array()
 var rightScore := 0
 
-enum matchState {NONE, BEGINNING, SERVING, PLAYING, PAUSED, FINISHED}
-var state = matchState.NONE
+enum matchState {SELECTION, BEGINNING, SERVING, PLAYING, PAUSED, FINISHED}
+var state = matchState.SELECTION
 
 
 
@@ -41,7 +42,7 @@ func _onServe() -> void:
 
 func begin() -> void:
 	state = matchState.BEGINNING
-	# TODO :animations
+	# TODO :animations and give service
 	pass
 	
 
@@ -60,8 +61,10 @@ func givePorjectileToServe(toLeftPlayer : bool = true) -> void:
 	else:
 		serveur = Globals.level.get_node("Filet")
 	if (!serveur):
+		var proj = Globals.projectiles[0]
+		proj.teleportForService(Vector2(500,500))
 		return
-	var targetLocation = serveur.position + Vector2(0, -220)
+	var targetLocation = Vector2(serveur.global_position.x, 550.0)
 	if (Globals.projectiles.size()):
 		var proj = Globals.projectiles[0]
 		proj.teleportForService(targetLocation)
