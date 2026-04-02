@@ -1,7 +1,7 @@
 #@tool # makes function _process called in the editor
 extends RigidBody2D
 
-const Globals := preload("res://MainLevel/Scripts/globalStuff.gd")
+const Globals := preload("res://MainLevel/Scripts/Main/globalStuff.gd")
 
 @export var size := 1.0
 #var customGravity := 1.0
@@ -60,7 +60,7 @@ func teleportForService(targetLocation : Vector2) ->void:
 		move_and_collide(targetLocation-position)
 		collision_mask = temp
 		set("linear_velocity",Vector2(0,0))
-		set("gravity_scale", 0)
+		set("gravity_scale", 0.08)
 		isActive = true
 		waitingForService = true
 		
