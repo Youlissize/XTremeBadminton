@@ -9,9 +9,9 @@
 [ext_resource type="Script" uid="uid://d2atqmgs58i2o" path="res://MainLevel/MapObjects/ground.gd" id="5_xww2o"]
 [ext_resource type="Script" uid="uid://d22aqrccmbit0" path="res://MainLevel/Scripts/Other/display_perf.gd" id="8_docy6"]
 [ext_resource type="PackedScene" uid="uid://bhxi7h8crtlj" path="res://MainLevel/Scripts/Main/TileMapLoader.tscn" id="12_2ogm3"]
-[ext_resource type="PackedScene" uid="uid://0bprg8mbscfn" path="res://MainLevel/MapObjects/FloatingObject.tscn" id="12_5eoi4"]
 [ext_resource type="Script" uid="uid://u2jn5mhqf5t7" path="res://MainLevel/Scripts/Main/mainCam.gd" id="12_53suw"]
 [ext_resource type="Texture2D" uid="uid://b3oa4ltrc4tfa" path="res://Textures/sol.png" id="12_abu25"]
+[ext_resource type="PackedScene" uid="uid://ub3bw3ewsbj" path="res://Player/Monocycle.tscn" id="13_n6ckw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4buw4"]
 shader = ExtResource("2_53suw")
@@ -194,13 +194,13 @@ script = ExtResource("12_53suw")
 visible = false
 position = Vector2(-2, -1)
 
-[node name="FloatingObject2" parent="." instance=ExtResource("12_5eoi4")]
-position = Vector2(1431, 579)
-
-[node name="FloatingObject" parent="." instance=ExtResource("12_5eoi4")]
-position = Vector2(615, 638)
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(808.5, 496.99997)
 scale = Vector2(0.8432292, 0.9129629)
 texture = ExtResource("12_abu25")
+
+[node name="Monocycle2" parent="." instance=ExtResource("13_n6ckw")]
+position = Vector2(1318, 324)
+
+[node name="Monocycle" parent="." instance=ExtResource("13_n6ckw")]
+position = Vector2(421, 297)

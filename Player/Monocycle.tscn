@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=3 uid="uid://ub3bw3ewsbj"]
+
+[ext_resource type="Script" uid="uid://58eutavmbkas" path="res://Player/monocycle.gd" id="1_1hs3q"]
+[ext_resource type="Texture2D" uid="uid://bq1qcsjvw4btb" path="res://Textures/monoc_selle.png" id="1_dg610"]
+[ext_resource type="Texture2D" uid="uid://chqrw37vo10rt" path="res://Textures/monoc_roue.png" id="2_1hs3q"]
+[ext_resource type="Texture2D" uid="uid://0ppmnkjuyy0y" path="res://Textures/monoc_fourche.png" id="3_qvyfx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fc6n5"]
+
+[node name="Monocycle" type="Node2D"]
+script = ExtResource("1_1hs3q")
+
+[node name="Roue" type="RigidBody2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+mass = 40.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Roue"]
+position = Vector2(-1, 122)
+scale = Vector2(7.47284, 7.571359)
+shape = SubResource("CircleShape2D_fc6n5")
+
+[node name="Sprite2D" type="Sprite2D" parent="Roue"]
+position = Vector2(-3, 122)
+scale = Vector2(0.24890564, 0.24173471)
+texture = ExtResource("2_1hs3q")
+offset = Vector2(4.562051, -293.24503)
+
+[node name="Selle" type="RigidBody2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+mass = 10.0
+gravity_scale = -0.5
+lock_rotation = true
+angular_damp = 5.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Selle"]
+position = Vector2(-2, 16.000006)
+scale = Vector2(8.85321, 2.0043142)
+shape = SubResource("CircleShape2D_fc6n5")
+
+[node name="Sprite2D" type="Sprite2D" parent="Selle"]
+position = Vector2(-3.0000153, 119.99998)
+scale = Vector2(0.19115698, 0.18529195)
+texture = ExtResource("1_dg610")
+offset = Vector2(13.040039, -421.73712)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Selle"]
+position = Vector2(-3, 118.00001)
+scale = Vector2(0.2223473, 0.25295696)
+texture = ExtResource("3_qvyfx")
+offset = Vector2(8.206377, -280.26282)
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="."]
+position = Vector2(-4, 123)
+scale = Vector2(1.0150812, 0.98483914)
+node_a = NodePath("../Selle")
+node_b = NodePath("../Roue")
+angular_limit_upper = 0.7120943
