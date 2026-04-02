@@ -34,7 +34,7 @@ func hitVolant(volant : PhysicsBody2D) -> bool:
 	
 	
 	#Test angle epaule-volant
-	var phi : float = epauleToVolant.angle_to(forward()) * 57.2957795131 #180/PI
+	var phi : float = epauleToVolant.angle_to(player.getForwardVector()) * 57.2957795131 #180/PI
 	phi = 180 - abs(phi)
 	print(phi)
 	if ((enHaut && (phi>angleTopEnd || phi<angleTopStart))):

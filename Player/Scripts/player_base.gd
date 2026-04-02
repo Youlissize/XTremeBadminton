@@ -28,6 +28,7 @@ var lastPressJumpTime := 0
 var lastHitTime := 0
 var hitBuffer := Vector2(0,0) # represents : timer count , type of hit pressed (0=nothing,1=base hit)
 var minAngleToGround := 0.1
+var isServing := false
 
 #REFERENCES AUX TRUCS
 var ground : StaticBody2D
@@ -134,6 +135,10 @@ func _physics_process(delta: float) -> void:
 		else:
 			Y_speed += gravity*delta
 				
+	if(isServing):
+		# teleport volant each frame until service
+		Globals.projectiles[0].global_position = self.global_position + getForwardVector()*70+Vector2(0,-200)
+		
 func touchedGround():
 	inAir=false
 	quickFall = false
@@ -171,8 +176,17 @@ func jump():
 func startFalling():
 	quickFall = true
 
+func getForwardVector() -> Vector2:
+	if isLeftSide:
+		return Vector2(1,0)
+	else:
+		return Vector2(-1,0)
+
 # TAPER DRU
 func hit(ignoreTiming := false) -> bool:
+	if (isServing):
+		serve()
+		return true
 	var time = Time.get_ticks_msec()
 	if (ignoreTiming || (time > lastHitTime + hitDelay)):
 		lastHitTime = time
@@ -183,3 +197,8 @@ func hit(ignoreTiming := false) -> bool:
 			hitBuffer.x = delay
 			hitBuffer.y = 1 # means "basic hit"
 		return false
+
+func serve():
+	isServing = false
+	Globals.projectiles[0].hitted(Vector2(0, -600))
+	#TODO : petit lancé de balle

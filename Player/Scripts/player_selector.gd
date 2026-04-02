@@ -42,15 +42,19 @@ func setSide(newIsLeft:bool):
 	
 func _input(_event: InputEvent) -> void:
 		# Input execute
-	if (input.is_action_just_pressed("jump")):
-		$mainBox.visible = false
-	
-	if input.is_action_just_pressed("join"):
-		# an alternative to this is just call PlayerManager.leave(player)
-		# but that only works if you set up the PlayerManager singleton
-		leave.emit(player_id)
-	
-	if input.is_action_just_pressed("R1"):
-		setSide(false)
-	if input.is_action_just_pressed("L1"):
-		setSide(true)
+	if (currentState==playerState.PLAYING):
+		pass
+	else:
+		if (input.is_action_just_pressed("jump")):
+			$mainBox.visible = false
+			currentState = playerState.PLAYING
+		
+		if input.is_action_just_pressed("join"):
+			# an alternative to this is just call PlayerManager.leave(player)
+			# but that only works if you set up the PlayerManager singleton
+			leave.emit(player_id)
+		
+		if input.is_action_just_pressed("R1"):
+			setSide(false)
+		if input.is_action_just_pressed("L1"):
+			setSide(true)

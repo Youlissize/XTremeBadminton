@@ -136,14 +136,8 @@ rotation = 1.5708
 shape = SubResource("WorldBoundaryShape2D_jr3hq")
 
 [node name="GravityAttraction" parent="LeftBorder" instance=ExtResource("8_53suw")]
-position = Vector2(234, 448)
-attractivty = 0.3
-faloff = 8.0
-radius = 1000.0
-
-[node name="GravityAttraction2" parent="LeftBorder" instance=ExtResource("8_53suw")]
-position = Vector2(1310, 451)
-attractivty = 0.3
+position = Vector2(870, 163)
+attractivty = 0.1
 faloff = 8.0
 radius = 1000.0
 

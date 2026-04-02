@@ -56,10 +56,10 @@ scale = Vector2(0.461364, 0.770588)
 texture = ExtResource("2_7r5ub")
 
 [node name="Perso" type="Sprite2D" parent="."]
-position = Vector2(-1.0000019, -16)
+position = Vector2(-1, -33)
 scale = Vector2(0.57, 0.816)
 texture = ExtResource("2_7r5ub")
-offset = Vector2(-50, 0)
+offset = Vector2(-50.000004, 20.833334)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.99998474)

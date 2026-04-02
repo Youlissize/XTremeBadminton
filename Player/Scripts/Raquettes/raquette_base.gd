@@ -19,9 +19,3 @@ func hit() ->bool :
 		if(hitVolant(volant)):
 			res = true
 	return res
-
-func forward() -> Vector2:
-	if leftSide:
-		return Vector2(1,0)
-	else:
-		return Vector2(-1,0)

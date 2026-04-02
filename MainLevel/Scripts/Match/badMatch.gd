@@ -35,7 +35,7 @@ func _onProjectileTouchedGround(projectile : Node2D) -> void:
 	giveServe(leftWins)
 	pass
 
-# event called by Player who served
+# event called by Player who served -> TODO
 func _onServe() -> void:
 	state = matchState.PLAYING
 
@@ -43,8 +43,8 @@ func _onServe() -> void:
 func begin() -> void:
 	state = matchState.BEGINNING
 	# TODO :animations and give service
-	pass
-	
+	#...
+	giveServe(true)
 
 func giveServe(toLeftPlayer : bool = true) -> void:
 	state = matchState.SERVING
@@ -68,3 +68,4 @@ func givePorjectileToServe(toLeftPlayer : bool = true) -> void:
 	if (Globals.projectiles.size()):
 		var proj = Globals.projectiles[0]
 		proj.teleportForService(targetLocation)
+		serveur.isServing = true
