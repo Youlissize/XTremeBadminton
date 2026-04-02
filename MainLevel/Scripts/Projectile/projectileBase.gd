@@ -34,12 +34,9 @@ func _physics_process(delta: float) -> void:
 			#additionalForces += 
 			var f = pu.getPowerUpForce(self)
 			self.apply_central_force(f)
-	#if (currentPowerUps.size()):
-	#	self.apply_impulse(additionalForces, self.global_position)
-	#test
-	#
-	#	currentPowerUps[0].exit(self)
-		#currentPowerUps.remove_at(0)
+	
+	#global_rotation = 
+
 
 func _on_body_entered(body: Node) -> void:
 	if body.has_method("hit") && isActive:
