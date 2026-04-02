@@ -45,9 +45,6 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_a3pm3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_a3pm3")
 }],
 "loop": true,
 "name": &"shot",

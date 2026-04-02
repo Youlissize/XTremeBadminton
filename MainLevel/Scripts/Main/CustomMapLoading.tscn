@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dlm5t26j1x75l"]
+[gd_scene load_steps=23 format=3 uid="uid://dlm5t26j1x75l"]
 
 [ext_resource type="Script" uid="uid://bis7hslkecq4c" path="res://MainLevel/Scripts/Main/mapLoading.gd" id="1_82vp7"]
 [ext_resource type="Texture2D" uid="uid://cxtuvhh1ubuq2" path="res://Textures/fondavecfilet.jpg" id="1_dn44s"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bhxi7h8crtlj" path="res://MainLevel/Scripts/Main/TileMapLoader.tscn" id="12_2ogm3"]
 [ext_resource type="PackedScene" uid="uid://0bprg8mbscfn" path="res://MainLevel/MapObjects/FloatingObject.tscn" id="12_5eoi4"]
 [ext_resource type="Script" uid="uid://u2jn5mhqf5t7" path="res://MainLevel/Scripts/Main/mainCam.gd" id="12_53suw"]
+[ext_resource type="Texture2D" uid="uid://b3oa4ltrc4tfa" path="res://Textures/sol.png" id="12_abu25"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4buw4"]
 shader = ExtResource("2_53suw")
@@ -198,3 +199,8 @@ position = Vector2(1431, 579)
 
 [node name="FloatingObject" parent="." instance=ExtResource("12_5eoi4")]
 position = Vector2(615, 638)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(808.5, 496.99997)
+scale = Vector2(0.8432292, 0.9129629)
+texture = ExtResource("12_abu25")
