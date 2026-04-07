@@ -42,10 +42,11 @@ func _physics_process(delta: float) -> void:
 func _on_body_entered(body: Node) -> void:
 	if body.has_method("hit") && isActive:
 			body.hit(self)
-	print ("Collision with : ",body.name)
+	#print ("Collision with : ",body.name)
 
 func body_exited(body:Node)->void:
-	print ("Exited collision with : ",body.name)
+	pass
+	#print ("Exited collision with : ",body.name)
 	
 func hitted(newVelocity : Vector2) -> void:
 	set("linear_velocity", newVelocity)

@@ -1,11 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://ub3bw3ewsbj"]
+[gd_scene load_steps=8 format=3 uid="uid://ub3bw3ewsbj"]
 
-[ext_resource type="Script" uid="uid://58eutavmbkas" path="res://Player/monocycle.gd" id="1_1hs3q"]
+[ext_resource type="Script" uid="uid://58eutavmbkas" path="res://Player/Vehicules/Monocycle/monocycle.gd" id="1_1hs3q"]
 [ext_resource type="Texture2D" uid="uid://bq1qcsjvw4btb" path="res://Textures/monoc_selle.png" id="1_dg610"]
 [ext_resource type="Texture2D" uid="uid://chqrw37vo10rt" path="res://Textures/monoc_roue.png" id="2_1hs3q"]
+[ext_resource type="Script" uid="uid://ch04ysh3w5kwo" path="res://Player/Vehicules/Monocycle/selle.gd" id="3_pc5ok"]
 [ext_resource type="Texture2D" uid="uid://0ppmnkjuyy0y" path="res://Textures/monoc_fourche.png" id="3_qvyfx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fc6n5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1hs3q"]
+size = Vector2(140, 40)
 
 [node name="Monocycle" type="Node2D"]
 script = ExtResource("1_1hs3q")
@@ -27,17 +31,19 @@ texture = ExtResource("2_1hs3q")
 offset = Vector2(4.562051, -293.24503)
 
 [node name="Selle" type="RigidBody2D" parent="."]
-collision_layer = 3
-collision_mask = 3
+collision_layer = 135
+collision_mask = 135
 mass = 10.0
 gravity_scale = -0.5
 lock_rotation = true
+contact_monitor = true
+max_contacts_reported = 10
 angular_damp = 5.0
+script = ExtResource("3_pc5ok")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Selle"]
 position = Vector2(-2, 16.000006)
-scale = Vector2(8.85321, 2.0043142)
-shape = SubResource("CircleShape2D_fc6n5")
+shape = SubResource("RectangleShape2D_1hs3q")
 
 [node name="Sprite2D" type="Sprite2D" parent="Selle"]
 position = Vector2(-3.0000153, 119.99998)

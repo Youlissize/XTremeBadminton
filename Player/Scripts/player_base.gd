@@ -29,6 +29,7 @@ var lastHitTime := 0
 var hitBuffer := Vector2(0,0) # represents : timer count , type of hit pressed (0=nothing,1=base hit)
 var minAngleToGround := 0.1
 var isServing := false
+var currentVehicule : Node2D = null 
 
 #REFERENCES AUX TRUCS
 var ground : StaticBody2D
@@ -74,9 +75,9 @@ func setSide(isLeft : bool) -> void :
 		Globals.currentMatch.teamRight.erase(self)
 		Globals.currentMatch.teamLeft.append(self)
 	
-	$Perso.scale.x = sign * abs($Perso.scale.x) # WARNING scale négative provoque probablement des bugs!
+	# Mirroring sprites (Attention si scale négative sur objects physiques)
+	$Perso.scale.x = sign * abs($Perso.scale.x)
 	$Epaule.scale.x = sign * abs($Epaule.scale.x)
-	#$Epaule/Raquette/Sprite2D.scale.x = sign * abs($Epaule/Raquette/Sprite2D.scale.x)
 	$AnimatedSprite2D.scale.x = sign * abs($AnimatedSprite2D.scale.x)
 		
 
@@ -113,33 +114,40 @@ func getMotion(delta:float) -> Vector2:
 	return Vector2(speed * X_dir, Y_speed) * delta
 
 func _physics_process(delta: float) -> void:
-	var motion = getMotion(delta)
+	if (currentVehicule):
+		assert(currentVehicule.has_method("move"))
+		currentVehicule.move(X_dir, 1.0 * speed)
+		teleport(currentVehicule.get_node("Selle").global_position + Vector2(0, -200))
+	else: #classic move
+		var motion = getMotion(delta)
+		var collision := move_and_collide(motion)
+		if (collision != null):
+			var c = collision.get_collider()
+			#Tentative pour "pousser" les floating objects
+			if (c):
+				#print(c.get_class())
+				if(c.get_class() == "RigidBody2D"):
+					c.set("linear_velocity", -10.0*collision.get_normal()*objectForce + c.get("linear_velocity"))
+					
+					#c.set("angular_velocity", c.get("angular_velocity")*1.2)
+			if(collision.get_collider()== Globals.ground):
+				touchedGround()
+			elif(collision.get_collider().has_method("getVehicule")):
+				currentVehicule = collision.get_collider().getVehicule()
+				#touchedGround()
+			elif (collision.get_normal().y < -1.0*minAngleToGround):# && collision.get_collider().is_class(onFloatingObject())):
+				onFloatingObject()
+			elif (collision.get_normal().y > 0.5 && c.get_class() != "RigidBody2D"): # plafond
+				Y_speed = 0
+			else:
+				motion = Vector2(0.0, Y_speed* delta)
+				move_and_collide(motion)
+		if (inAir):
+			if (quickFall):
+				Y_speed += gravity*delta*fallSpeed
+			else:
+				Y_speed += gravity*delta
 	
-	var collision := move_and_collide(motion)
-	if (collision != null):
-		var c = collision.get_collider()
-		#Tentative pour "pousser" les floating objects
-		if (c):
-			#print(c.get_class())
-			if(c.get_class() == "RigidBody2D"):
-				c.set("linear_velocity", -10.0*collision.get_normal()*objectForce + c.get("linear_velocity"))
-				
-				#c.set("angular_velocity", c.get("angular_velocity")*1.2)
-		if(collision.get_collider()== Globals.ground):
-			touchedGround()
-		elif (collision.get_normal().y < -1.0*minAngleToGround):# && collision.get_collider().is_class(onFloatingObject())):
-			onFloatingObject()
-		elif (collision.get_normal().y > 0.5 && c.get_class() != "RigidBody2D"): # plafond
-			Y_speed = 0
-		else:
-			motion = Vector2(0.0, Y_speed* delta)
-			move_and_collide(motion)
-	if (inAir):
-		if (quickFall):
-			Y_speed += gravity*delta*fallSpeed
-		else:
-			Y_speed += gravity*delta
-				
 	if(isServing):
 		# teleport volant each frame until service
 		Globals.projectiles[0].global_position = self.global_position + getForwardVector()*(-20)+Vector2(0,-240)
@@ -164,7 +172,9 @@ func onFloatingObject():
 	onObjectTimer = 0.5
 
 func allowedToJump() -> bool:
-	if(!inAir):
+	if (currentVehicule!=null):
+		return true
+	if(!inAir && !isServing):
 		return true
 	elif (onObject):
 		return true
@@ -207,3 +217,7 @@ func serve():
 	isServing = false
 	Globals.projectiles[0].hitted(Vector2(0, -300))
 	#TODO : petit lancé de balle
+
+func setVehicule(vehicule : Node2D):
+	#assert(currentVehicule==null)
+	currentVehicule = vehicule

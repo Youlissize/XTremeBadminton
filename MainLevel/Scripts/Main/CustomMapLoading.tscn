@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bhxi7h8crtlj" path="res://MainLevel/Scripts/Main/TileMapLoader.tscn" id="12_2ogm3"]
 [ext_resource type="Script" uid="uid://u2jn5mhqf5t7" path="res://MainLevel/Scripts/Main/mainCam.gd" id="12_53suw"]
 [ext_resource type="Texture2D" uid="uid://b3oa4ltrc4tfa" path="res://Textures/sol.png" id="12_abu25"]
-[ext_resource type="PackedScene" uid="uid://ub3bw3ewsbj" path="res://Player/Monocycle.tscn" id="13_n6ckw"]
+[ext_resource type="PackedScene" uid="uid://ub3bw3ewsbj" path="res://Player/Vehicules/Monocycle/Monocycle.tscn" id="13_n6ckw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4buw4"]
 shader = ExtResource("2_53suw")
@@ -160,6 +160,7 @@ position = Vector2(860, 830)
 scale = Vector2(1, 3.5)
 
 [node name="Sprite2D" type="Sprite2D" parent="Filet"]
+z_index = 5
 position = Vector2(0, -50)
 rotation = 1.5708
 texture = SubResource("GradientTexture2D_xww2o")
@@ -195,8 +196,8 @@ visible = false
 position = Vector2(-2, -1)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(808.5, 496.99997)
-scale = Vector2(0.8432292, 0.9129629)
+position = Vector2(808.5, 645.49994)
+scale = Vector2(0.8432292, 0.6379629)
 texture = ExtResource("12_abu25")
 
 [node name="Monocycle2" parent="." instance=ExtResource("13_n6ckw")]

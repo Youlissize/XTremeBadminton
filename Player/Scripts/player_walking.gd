@@ -16,6 +16,7 @@ func jump():
 	if allowedToJump():
 		Y_speed = -jumpForce
 		inAir = true
+		currentVehicule = null
 
 
 func hit(ignoreTiming := false) ->bool:
